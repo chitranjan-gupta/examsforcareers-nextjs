@@ -6,7 +6,8 @@
             "@/components/*":["components/*"],
             "@/utils/*":["utils/*"],
             "@/models/*":["models/*"],
-            "@/middleware/*":["middleware/*"]
+            "@/middleware/*":["middleware/*"],
+            "@/styles/*":["styles/*"]
         }
     }
 }
