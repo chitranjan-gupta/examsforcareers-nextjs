@@ -1,0 +1,283 @@
+.adminBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  overflow: hidden;
+}
+
+.adminBox .postBox {
+  width: 950px;
+  height: 515px;
+  border-radius: 5px;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.adminBox .postBox .optionBox {
+  width: 20%;
+  height: 100%;
+  background-color: cornflowerblue;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.adminBox .postBox .optionBox .brandBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 60px;
+}
+
+.adminBox .postBox .optionBox .brandBox div {
+  width: 60px;
+  height: 50px;
+  margin: 0 16px;
+}
+
+.adminBox .postBox .optionBox .brandBox div img {
+  width: 100%;
+  height: 100%;
+}
+
+.adminBox .postBox .optionBox .listBox {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.adminBox .postBox .optionBox .listBox .loginBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.adminBox .postBox .optionBox .listBox .loginBox span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.adminBox .postBox .optionBox .listBox .loginBox span h4 {
+  font-size: small;
+}
+
+.adminBox .postBox .optionBox .listBox .loginBox span b {
+  font-size: x-small;
+}
+
+.adminBox .postBox .optionBox .listBox .loginBox div {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: transparent;
+  padding: 15px;
+}
+
+.adminBox .postBox .optionBox .listBox .loginBox div img {
+  width: 100%;
+  height: 100%;
+}
+
+.adminBox .postBox .optionBox .listBox ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.adminBox .postBox .optionBox .listBox ul li {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 95%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  text-indent: 10px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.adminBox .postBox .optionBox .listBox ul li div {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+.activeListBox {
+  background-color: white;
+  color: cornflowerblue;
+  cursor: pointer;
+}
+
+.activeListBox div svg {
+  fill: cornflowerblue !important;
+  cursor: pointer;
+}
+
+.adminBox .postBox .optionBox .listBox ul li div svg {
+  width: 100%;
+  height: 100%;
+  fill: white;
+}
+
+.adminBox .postBox .optionBox .listBox ul li:hover {
+  background-color: white;
+  color: cornflowerblue;
+  cursor: pointer;
+}
+
+.adminBox .postBox .optionBox .listBox ul li:hover > div svg {
+  fill: cornflowerblue;
+  cursor: pointer;
+}
+
+.adminBox .postBox .workBox {
+  width: 80%;
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.adminBox .postBox .workBox header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 1px 2px 4px 0px rgb(0 0 0 / 35%);
+  border-top-right-radius: 5px;
+}
+
+.adminBox .postBox .workBox header .seimg {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.adminBox .postBox .workBox header .seimg input {
+  border: none;
+  outline: none;
+  width: 180px;
+  height: 30px;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  text-indent: 10px;
+  color: black;
+}
+
+.adminBox .postBox .workBox header .seimg input::placeholder {
+  color: black;
+}
+
+.adminBox .postBox .workBox header .seimg .simg {
+  background-color: cornflowerblue;
+  width: 25px;
+  height: 30px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.adminBox .postBox .workBox header .seimg .simg img {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 5px !important;
+  padding-top: 7px !important;
+}
+
+.adminBox .postBox .workBox header h1 {
+  color: black;
+}
+
+.adminBox .postBox .workBox .contentBox {
+  padding: 10px;
+  width: 100%;
+}
+.adminBox .postBox .workBox .contentBox div h1 {
+  color: black;
+}
+.adminBox .postBox .workBox .contentBox .statBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.adminBox .postBox .workBox .contentBox .statBox .statCard {
+  width: 240px;
+  height: 150px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 9px 1px rgb(0 0 0 / 35%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  padding: 10px;
+  z-index: 12;
+}
+
+.adminBox .postBox .workBox .contentBox .statBox .statCard::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ffffff3b;
+  transform: translate(140px, 30px);
+}
+
+.adminBox .postBox .workBox .contentBox .statBox .statCard::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ffffff3b;
+  transform: translate(155px, -30px);
+}
+
+.adminBox .postBox .workBox .contentBox .statBox .statCard .imgC {
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+  padding: 10px;
+  background-color: #ffffff36;
+  box-shadow: 2px 5px 5px #00000017;
+}
+
+.adminBox .postBox .workBox .contentBox .statBox .statCard .imgC img {
+  width: 100%;
+  height: 100%;
+}
+
+.adminBox .postBox .workBox .contentBox .statBox .statCard:nth-child(1) {
+  background-image: linear-gradient(45deg, #db0b5f, #6f00ed);
+}
+
+.adminBox .postBox .workBox .contentBox .statBox .statCard:nth-child(2) {
+  background-image: linear-gradient(45deg, #ff9f4a, #ff3c83);
+}
+
+.adminBox .postBox .workBox .contentBox .statBox .statCard:nth-child(3) {
+  background-image: linear-gradient(45deg, #16a085, blueviolet);
+}
+
+.InAdmin {
+  width: 400px !important;
+}
