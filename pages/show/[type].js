@@ -1,2 +1,2 @@
-import ViewAll from "../../components/ViewAll";
+import ViewAll from "@/components/ViewAll";
 export default ViewAll;

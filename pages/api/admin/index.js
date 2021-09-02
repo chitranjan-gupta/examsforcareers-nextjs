@@ -1,10 +1,10 @@
-import dbConnect from "../../../utils/dbConnect";
+import dbConnect from "@/utils/dbConnect";
 import Cookies from "cookies";
 const bcrypt = require("bcryptjs");
 export default async function handler(req, res) {
   const { method } = req;
   if (method === "POST") {
-    const Admin = require("../../../models/admin");
+    const Admin = require("@/models/admin");
     await dbConnect();
     try {
       const { email, password } = req.body;

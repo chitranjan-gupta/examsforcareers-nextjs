@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
+import Footer from "@/components/Footer";
 
 function Details() {
   const [loading, setLoading] = useState(false);

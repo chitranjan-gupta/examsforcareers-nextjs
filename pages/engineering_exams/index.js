@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import PageNumber from "../../components/PageNumber";
-import Footer from "../../components/Footer";
 import Link from "next/link";
+import PageNumber from "@/components/PageNumber";
+import Footer from "@/components/Footer";
 
 function Engineering_exams() {
   const [loading, setLoading] = useState(false);

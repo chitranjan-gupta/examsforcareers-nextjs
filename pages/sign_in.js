@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import emailimg from "../images/gmail.png";
-import sign_in from "../images/sign_in.svg";
+import emailimg from "@/images/gmail.png";
+import sign_in from "@/images/sign_in.svg";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";

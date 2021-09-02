@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import iLogo from "../images/logo_main.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import Footer from "./Footer";
+import Footer from "@/components/Footer";
+import iLogo from "@/images/logo_main.png";
 
 function Open() {
   const [loading, setLoading] = useState(false);

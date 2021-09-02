@@ -1,9 +1,9 @@
-import dbConnect from "../../../../utils/dbConnect";
-import auth from "../../../../middleware/adminauth";
+import dbConnect from "@/utils/dbConnect";
+import auth from "@/middleware/adminauth";
 const handler = async (req, res) => {
   const { method } = req;
   if (method === "GET") {
-    const Exam = require("../../../../models/exam");
+    const Exam = require("@/models/exam");
     await dbConnect();
     return new Promise((resolve) => {
       try {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import PageNumber from "../../components/PageNumber";
-import Footer from "../../components/Footer";
+import PageNumber from "@/components/PageNumber";
+import Footer from "@/components/Footer";
 
 function Others_Exams() {
   const [loading, setLoading] = useState(false);

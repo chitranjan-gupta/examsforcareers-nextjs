@@ -1,14 +1,14 @@
-import dbConnect from "../../../../../utils/dbConnect";
-import auth from "../../../../../middleware/adminauth";
+import dbConnect from "@/utils/dbConnect";
+import auth from "@/middleware/adminauth";
 const handler = async (req, res) => {
   const { id } = req.query;
   const { method } = req;
   if (method === "DELETE") {
-    const Exam = require("../../../../../models/exam");
-    const Detail = require("../../../../../models/details");
-    const Update = require("../../../../../models/updates");
-    const Admit = require("../../../../../models/admit");
-    const Result = require("../../../../../models/result");
+    const Exam = require("@/models/exam");
+    const Detail = require("@/models/details");
+    const Update = require("@/models/updates");
+    const Admit = require("@/models/admit");
+    const Result = require("@/models/result");
     await dbConnect();
     return new Promise((resolve) => {
       try {

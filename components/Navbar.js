@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo_main from "../images/logo_main.png";
-import lines from "../images/lines.svg";
+import Head from "next/head";
+import logo_main from "@/images/logo_main.png";
+import lines from "@/images/lines.svg";
 
 function Navbar() {
   if (typeof window !== "undefined") {
@@ -106,6 +107,14 @@ function Navbar() {
   };
   return (
     <>
+      <Head>
+        <title>examsforcareers.com</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Information Regarding Various Government Exams, State Exams, Entrance Exams and Institute Exams"
+        />
+      </Head>
       <div className="toolbar">
         <div className="brand">
           <div className="logo">

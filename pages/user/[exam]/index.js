@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import user from "../../../images/user.svg";
-import man from "../../../images/girl.svg";
-import mile from "../../../images/mile.svg";
-import Prize from "../../../images/Prize.svg";
+import user from "@/images/user.svg";
+import man from "@/images/girl.svg";
+import mile from "@/images/mile.svg";
+import Prize from "@/images/Prize.svg";
 
 function UserChoice() {
   const [loading, setLoading] = useState(false);

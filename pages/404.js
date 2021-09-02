@@ -6,7 +6,7 @@ function Error() {
     document.title = "404";
   }
   const history = useRouter();
-  const goBack = () => {
+  const goBack = (e) => {
     history.back();
   };
   return (

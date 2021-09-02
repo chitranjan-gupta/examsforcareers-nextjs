@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../../components/Footer";
-import PageNumber from "../../components/PageNumber";
 import Link from "next/link";
+import Footer from "@/components/Footer";
+import PageNumber from "@/components/PageNumber";
 
 function Central_Exams() {
   const [loading, setLoading] = useState(false);

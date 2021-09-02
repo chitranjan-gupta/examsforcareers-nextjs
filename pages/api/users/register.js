@@ -1,8 +1,8 @@
-import dbConnect from "../../../utils/dbConnect";
+import dbConnect from "@/utils/dbConnect";
 export default async function handler(req, res) {
   const { method } = req;
   if (method === "POST") {
-    const User = require("../../../models/user");
+    const User = require("@/models/user");
     await dbConnect();
     const user = await User.findOne({ email: req.body.email });
     if (!user) {

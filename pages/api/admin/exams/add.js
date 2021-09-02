@@ -1,16 +1,16 @@
-import dbConnect from "../../../../utils/dbConnect";
-import auth from "../../../../middleware/adminauth";
+import dbConnect from "@/utils/dbConnect";
+import auth from "@/middleware/adminauth";
 const handler = async (req, res) => {
   const { method } = req;
   var Jsondata;
   var StatusCode;
   if (method === "POST") {
     try {
-      const Exam = require("../../../../models/exam");
-      const Detail = require("../../../../models/details");
-      const Update = require("../../../../models/updates");
-      const Admit = require("../../../../models/admit");
-      const Result = require("../../../../models/result");
+      const Exam = require("@/models/exam");
+      const Detail = require("@/models/details");
+      const Update = require("@/models/updates");
+      const Admit = require("@/models/admit");
+      const Result = require("@/models/result");
       await dbConnect();
       switch (req.body.type.trim()) {
         case "New_Exam": {

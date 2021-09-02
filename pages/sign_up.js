@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import man from "../images/person.svg";
-import emailimg from "../images/gmail.png";
-import sign_up from "../images/sign_up.svg";
+import man from "@/images/person.svg";
+import emailimg from "@/images/gmail.png";
+import sign_up from "@/images/sign_up.svg";
 
 function Signup() {
   if (typeof window !== "undefined") {

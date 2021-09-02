@@ -30,10 +30,21 @@
   border-left: 5px solid var(--theme-color);
 }
 
-.contactBody .contactinfo .detailBox img {
+.contactBody .contactinfo .detailBox:nth-child(2) div:nth-child(1) {
+  width: 30px !important;
+  height: 20px !important;
+  margin-right: 10px !important;
+}
+
+.contactBody .contactinfo .detailBox svg {
   width: 30px;
   height: 20px;
   margin-right: 10px;
+}
+
+.contactBody .contactinfo .detailBox img {
+  width: 30px !important;
+  height: 20px !important;
 }
 
 .contactBody .contactinfo .detailBox div h4 {

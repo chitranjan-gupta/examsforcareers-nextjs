@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import logo_main from "../../images/logo_main.png";
-import person from "../../images/person.svg";
-import edit from "../../images/edit.svg";
-import search from "../../images/search.svg";
-import emailimg from "../../images/gmail.png";
+import logo_main from "@/images/logo_main.png";
+import person from "@/images/person.svg";
+import edit from "@/images/edit.svg";
+import search from "@/images/search.svg";
+import emailimg from "@/images/gmail.png";
 
 function Admin() {
   const [loading, setLoading] = useState(false);

@@ -1,8 +1,8 @@
-import dbConnect from "../../../utils/dbConnect";
+import dbConnect from "@/utils/dbConnect";
 export default async function handler(req, res) {
   const { method } = req;
   if (method === "POST") {
-    const Exam = require("../../../models/exam");
+    const Exam = require("@/models/exam");
     await dbConnect();
     return new Promise((resolve) => {
       try {

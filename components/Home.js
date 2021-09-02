@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../components/Footer";
-import search from "../images/search.svg";
-import exam from "../images/exam.svg";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Footer from "@/components/Footer";
+import search from "@/images/search.svg";
+import exam from "@/images/exam.svg";
 
 function Home() {
   const [loading, setLoading] = useState(false);

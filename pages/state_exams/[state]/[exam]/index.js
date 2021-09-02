@@ -1,2 +1,2 @@
-import Open from "../../../../components/Open";
+import Open from "@/components/Open";
 export default Open;

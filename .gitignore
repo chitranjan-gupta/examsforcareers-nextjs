@@ -4,7 +4,6 @@
 config.env
 package-lock.json
 .vscode
-next.config.js
 /.git
 # next.js
 /.next/

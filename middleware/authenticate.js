@@ -1,4 +1,4 @@
-import dbConnect from "../utils/dbConnect";
+import dbConnect from "@/utils/dbConnect";
 const jwt = require("jsonwebtoken");
 const authenticate = (handler, meth) => {
   return async (req, res) => {
@@ -11,7 +11,7 @@ const authenticate = (handler, meth) => {
       });
     }
     try {
-      const User = require("../models/user");
+      const User = require("@/models/user");
       const token = req.cookies.jwtoken;
       if (!token) {
         return new Promise((resolve) => {

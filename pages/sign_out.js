@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 function Signout() {
   const history = useRouter();
   useEffect(() => {
-    fetch("/api/items/signout", {
-      method: "GET",
+    fetch("/api/users/signout", {
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -13,7 +13,7 @@ function Signout() {
       credentials: "include",
     })
       .then(() => {
-        history.push("/sign_in", { replace: true });
+        history.push("/sign_in");
       })
       .catch((err) => console.log(err));
   });

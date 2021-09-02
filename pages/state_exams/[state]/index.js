@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PageNumber from "../../../components/PageNumber";
-import Footer from "../../../components/Footer";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import PageNumber from "@/components/PageNumber";
+import Footer from "@/components/Footer";
 
 function State() {
   const [loading, setLoading] = useState(false);

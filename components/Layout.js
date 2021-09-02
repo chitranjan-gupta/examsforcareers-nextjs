@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Loading from "./Loading";
+import Navbar from "@/components/Navbar";
+import Loading from "@/components/Loading";
 function Layout({ children }) {
   return (
     <>
