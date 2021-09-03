@@ -9,7 +9,7 @@ import "@/styles/Signin.css";
 import "@/styles/Signup.css";
 import "@/styles/User.css";
 import "@/styles/Details.css";
-import "@/styles/Listbox.css";
+import "@/styles/Viewall.css";
 import "@/styles/Open.css";
 import "@/styles/Userhome.css";
 
