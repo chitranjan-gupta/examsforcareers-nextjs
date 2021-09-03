@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
+import CardSkeleton from "@/components/CardSkeleton";
 
 function Medical_Exams() {
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,9 @@ function Medical_Exams() {
       },
       body: JSON.stringify({ categoryBase: "Medical Exams" }),
     });
-    setExams(await res.json());
+    if (res.status === 200) {
+      setExams(await res.json());
+    }
   };
   useEffect(() => {
     if (!loading) {
@@ -32,22 +35,30 @@ function Medical_Exams() {
   return (
     <div>
       <div className="card-container">
-        {exams.map((exam) => {
-          return (
-            <div className="card" key={exam._id}>
-              <h1>
-                <Link
-                  href={`/medical_exams/${exam.abbreviation.replace(
-                    / /g,
-                    "_"
-                  )}`}
-                >
-                  {exam.abbreviation}
-                </Link>
-              </h1>
-            </div>
-          );
-        })}
+        {exams.length >= 1 ? (
+          <>
+            {exams.map((exam) => {
+              return (
+                <div className="card" key={exam._id}>
+                  <h1>
+                    <Link
+                      href={`/medical_exams/${exam.abbreviation.replace(
+                        / /g,
+                        "_"
+                      )}`}
+                    >
+                      {exam.abbreviation}
+                    </Link>
+                  </h1>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <CardSkeleton />
+          </>
+        )}
       </div>
       <PageNumber />
       <Footer />

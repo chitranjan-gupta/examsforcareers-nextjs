@@ -334,6 +334,39 @@ a {
   transform: translateY(-10px);
 }
 
+.card-container .card.skeleton {
+  background-color: #d9d9d9;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px 0px rgb(0 0 0 / 35%);
+}
+
+.card-container .card.skeleton::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    #d9d9d9 0%,
+    rgba(0, 0, 0, 0.05) 20%,
+    #d9d9d9 40%,
+    #d9d9d9 100%
+  );
+  background-size: 450px 400px;
+  background-repeat: no-repeat;
+  animation: skimmer 1s linear infinite;
+}
+
+@keyframes skimmer {
+  0% {
+    background-position: -450px 0;
+  }
+  100% {
+    background-position: 450px 0;
+  }
+}
+
 .pagenumber {
   width: 100%;
   color: black;

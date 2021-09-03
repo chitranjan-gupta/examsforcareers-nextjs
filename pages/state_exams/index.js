@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
+import CardSkeleton from "@/components/CardSkeleton";
 
 function State_Exams() {
   const [loading, setLoading] = useState(false);
@@ -32,17 +33,56 @@ function State_Exams() {
   return (
     <div>
       <div className="card-container">
-        {states.map((state) => {
-          return (
-            <div className="card" key={state._id}>
-              <h1>
-                <Link href={`/state_exams/${state.name.replace(/ /g, "_")}`}>
-                  {state.name}
-                </Link>
-              </h1>
-            </div>
-          );
-        })}
+        {states.length >= 1 ? (
+          <>
+            {states.map((state) => {
+              return (
+                <div className="card" key={state._id}>
+                  <h1>
+                    <Link
+                      href={`/state_exams/${state.name.replace(/ /g, "_")}`}
+                    >
+                      {state.name}
+                    </Link>
+                  </h1>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        )}
       </div>
       <PageNumber />
       <Footer />

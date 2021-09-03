@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
+import CardSkeleton from "@/components/CardSkeleton";
 
 function Search() {
   const [loading, setLoading] = useState(false);
@@ -49,21 +50,35 @@ function Search() {
     <>
       <h3>You have search for {searchWord}</h3>
       <div className="card-container">
-        {relevant.map((exam) => {
-          return (
-            <div className="card" key={exam.id}>
-              <h1>
-                <Link
-                  href={`/${exam.categoryBase
-                    .replace(/ /g, "_")
-                    .toLowerCase()}/${exam.abbreviation.replace(/ /g, "_")}`}
-                >
-                  {exam.abbreviation}
-                </Link>
-              </h1>
-            </div>
-          );
-        })}
+        {relevant.length >= 1 ? (
+          <>
+            {relevant.map((exam) => {
+              return (
+                <div className="card" key={exam.id}>
+                  <h1>
+                    <Link
+                      href={`/${exam.categoryBase
+                        .replace(/ /g, "_")
+                        .toLowerCase()}/${exam.abbreviation.replace(
+                        / /g,
+                        "_"
+                      )}`}
+                    >
+                      {exam.abbreviation}
+                    </Link>
+                  </h1>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        )}
       </div>
       <PageNumber />
       <Footer />

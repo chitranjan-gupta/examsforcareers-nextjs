@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
+import CardSkeleton from "@/components/CardSkeleton";
 
 function State() {
   const [loading, setLoading] = useState(false);
@@ -42,21 +43,32 @@ function State() {
   return (
     <div>
       <div className="card-container">
-        {exams.map((exam) => {
-          return (
-            <div className="card" key={exam._id}>
-              <h1>
-                <Link
-                  href={`/state_exams/${
-                    router.query.state
-                  }/${exam.abbreviation.replace(/ /g, "_")}`}
-                >
-                  {exam.abbreviation}
-                </Link>
-              </h1>
-            </div>
-          );
-        })}
+        {exams.length >= 1 ? (
+          <>
+            {exams.map((exam) => {
+              return (
+                <div className="card" key={exam._id}>
+                  <h1>
+                    <Link
+                      href={`/state_exams/${
+                        router.query.state
+                      }/${exam.abbreviation.replace(/ /g, "_")}`}
+                    >
+                      {exam.abbreviation}
+                    </Link>
+                  </h1>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        )}
       </div>
       <PageNumber />
       <Footer />

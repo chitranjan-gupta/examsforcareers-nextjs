@@ -166,6 +166,72 @@
   text-align: center;
 }
 
+.Detail-Container.skeleton .SkeletonContentBox .SK .SKN,
+.Detail-Container.skeleton .aboutBox .iLogoBox,
+.Detail-Container.skeleton .aboutBox h1 {
+  background-color: #d9d9d9;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.Detail-Container.skeleton .SkeletonContentBox .SK .SKN::before,
+.Detail-Container.skeleton .aboutBox .iLogoBox::before,
+.Detail-Container.skeleton .aboutBox h1::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(
+    to right,
+    #d9d9d9 0%,
+    rgba(0, 0, 0, 0.05) 20%,
+    #d9d9d9 40%,
+    #d9d9d9 100%
+  );
+  background-size: 450px 400px;
+  background-repeat: no-repeat;
+  animation: skimmer 1s linear infinite;
+}
+
+.Detail-Container.skeleton .aboutBox h1 {
+  width: 400px;
+  height: 25px;
+}
+
+.Detail-Container.skeleton .aboutBox .iLogoBox {
+  border-radius: 50%;
+}
+
+.Detail-Container.skeleton .SkeletonContentBox {
+  width: 100%;
+  height: 90%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Detail-Container.skeleton .SkeletonContentBox .SK {
+  width: 50%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.Detail-Container.skeleton .SkeletonContentBox .SK .SKN.G1 {
+  width: 135px;
+  height: 25px;
+}
+
+.Detail-Container.skeleton .SkeletonContentBox .SK .SKN.G2 {
+  width: 300px;
+  height: 40px;
+}
+
 .Detail-Container::-webkit-scrollbar {
   width: 7px;
 }

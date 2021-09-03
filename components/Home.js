@@ -6,6 +6,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import search from "@/images/search.svg";
 import exam from "@/images/exam.svg";
+import USkeleton from "@/components/USkeleton";
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -70,7 +71,9 @@ function Home() {
           history.push("/404");
           return;
         }
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       if (typeof window !== "undefined") {
         window.alert("Type The Word");
@@ -108,15 +111,33 @@ function Home() {
         <div className="Update-card">
           <p>New Updates</p>
           <div>
-            {updates.map((update) => {
-              return (
-                <li key={update._id}>
-                  <Link href={`/details/${update.name.replace(/ /g, "_")}`}>
-                    {update.name}
-                  </Link>
-                </li>
-              );
-            })}
+            {updates.length >= 1 ? (
+              <>
+                {updates.map((update) => {
+                  return (
+                    <li key={update._id}>
+                      <Link
+                        href={`/details/${update.name.replace(/ /g, "_")}`}
+                        scroll={false}
+                      >
+                        {update.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+              </>
+            )}
           </div>
           <button onClick={() => goTo("/show/New_Updates")}>
             <b className="viewAll">View All</b>
@@ -125,15 +146,32 @@ function Home() {
         <div className="Update-card">
           <p>Admit Card</p>
           <div>
-            {admits.map((admit) => {
-              return (
-                <li key={admit._id}>
-                  <Link href={`/details/${admit.name.replace(/ /g, "_")}`}>
-                    {admit.name}
-                  </Link>
-                </li>
-              );
-            })}
+            {admits.length >= 1 ? (
+              <>
+                {admits.map((admit) => {
+                  return (
+                    <li key={admit._id}>
+                      <Link
+                        href={`/details/${admit.name.replace(/ /g, "_")}`}
+                        scroll={false}
+                      >
+                        {admit.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+              </>
+            )}
           </div>
           <button onClick={() => goTo("/show/Admit_Card")}>
             <b className="viewAll">View All</b>
@@ -142,15 +180,32 @@ function Home() {
         <div className="Update-card">
           <p>Results</p>
           <div>
-            {results.map((result) => {
-              return (
-                <li key={result._id}>
-                  <Link href={`/details/${result.name.replace(/ /g, "_")}`}>
-                    {result.name}
-                  </Link>
-                </li>
-              );
-            })}
+            {results.length >= 1 ? (
+              <>
+                {results.map((result) => {
+                  return (
+                    <li key={result._id}>
+                      <Link
+                        href={`/details/${result.name.replace(/ /g, "_")}`}
+                        scroll={false}
+                      >
+                        {result.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+                <USkeleton />
+              </>
+            )}
           </div>
           <button onClick={() => goTo("/show/Result")}>
             <b className="viewAll">View All</b>

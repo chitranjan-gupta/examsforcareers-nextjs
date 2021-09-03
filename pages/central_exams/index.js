@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import PageNumber from "@/components/PageNumber";
+import CardSkeleton from "@/components/CardSkeleton";
 
 function Central_Exams() {
   const [loading, setLoading] = useState(false);
@@ -33,22 +34,34 @@ function Central_Exams() {
     <div>
       <div id="mainContent">
         <div className="card-container">
-          {exams.map((exam) => {
-            return (
-              <div className="card" key={exam._id}>
-                <h1>
-                  <Link
-                    href={`/central_exams/${exam.abbreviation.replace(
-                      / /g,
-                      "_"
-                    )}`}
-                  >
-                    {exam.abbreviation}
-                  </Link>
-                </h1>
-              </div>
-            );
-          })}
+          {exams.length >= 1 ? (
+            <>
+              {exams.map((exam) => {
+                return (
+                  <div className="card" key={exam._id}>
+                    <h1>
+                      <Link
+                        href={`/central_exams/${exam.abbreviation.replace(
+                          / /g,
+                          "_"
+                        )}`}
+                      >
+                        {exam.abbreviation}
+                      </Link>
+                    </h1>
+                  </div>
+                );
+              })}
+            </>
+          ) : (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          )}
         </div>
         <PageNumber />
       </div>

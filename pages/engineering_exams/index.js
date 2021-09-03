@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
+import CardSkeleton from "@/components/CardSkeleton";
 
 function Engineering_exams() {
   const [loading, setLoading] = useState(false);
@@ -32,22 +33,41 @@ function Engineering_exams() {
   return (
     <div>
       <div className="card-container">
-        {exams.map((exam) => {
-          return (
-            <div className="card" key={exam._id}>
-              <h1>
-                <Link
-                  href={`/engineering_exams/${exam.abbreviation.replace(
-                    / /g,
-                    "_"
-                  )}`}
-                >
-                  {exam.abbreviation}
-                </Link>
-              </h1>
-            </div>
-          );
-        })}
+        {exams.length >= 1 ? (
+          <>
+            {exams.map((exam) => {
+              return (
+                <div className="card" key={exam._id}>
+                  <h1>
+                    <Link
+                      href={`/engineering_exams/${exam.abbreviation.replace(
+                        / /g,
+                        "_"
+                      )}`}
+                    >
+                      {exam.abbreviation}
+                    </Link>
+                  </h1>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        )}
       </div>
       <PageNumber />
       <Footer />
