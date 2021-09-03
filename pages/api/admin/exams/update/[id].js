@@ -110,7 +110,7 @@ const handler = async (req, res) => {
     }
   } else {
     Jsondata = JSON.stringify({ message: "Method Not Allowed" });
-    StatusCode = 401;
+    StatusCode = 405;
   }
   return new Promise((resolve) => {
     res.status(StatusCode).json(Jsondata);

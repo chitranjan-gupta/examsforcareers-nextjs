@@ -61,7 +61,8 @@
 .UpdateBox .dateBox,
 .UpdateBox .feeBox,
 .UpdateBox .eligibilityBox,
-.UpdateBox .sitelinkBox {
+.UpdateBox .sitelinkBox,
+.UpdateBox .NoteBox {
   color: black;
   display: flex;
   flex-direction: column;
@@ -72,7 +73,8 @@
 .UpdateBox .dateBox h1,
 .UpdateBox .feeBox h1,
 .UpdateBox .eligibilityBox h1,
-.UpdateBox .sitelinkBox h1 {
+.UpdateBox .sitelinkBox h1,
+.UpdateBox .NoteBox h1 {
   color: black;
   border-left: 2px solid var(--theme-color);
   padding-left: 5px;
@@ -80,7 +82,8 @@
 .UpdateBox .dateBox p,
 .UpdateBox .feeBox p,
 .UpdateBox .eligibilityBox p,
-.UpdateBox .sitelinkBox p {
+.UpdateBox .sitelinkBox p,
+.UpdateBox .NoteBox p {
   color: black;
   margin-left: 5px;
   margin-top: 5px;
@@ -94,6 +97,13 @@
   color: black;
   margin-left: 5px;
   margin-top: 5px;
+}
+.UpdateBox .dateBox p li a,
+.UpdateBox .feeBox p li a,
+.UpdateBox .eligibilityBox p li a,
+.UpdateBox .sitelinkBox p li a {
+  color: black;
+  white-space: nowrap;
 }
 .UpdateBox .dateBox p li:nth-child(even),
 .UpdateBox .feeBox p li:nth-child(even),

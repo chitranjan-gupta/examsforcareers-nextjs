@@ -10,7 +10,9 @@ export default async function handler(req, res) {
       const { email, password } = req.body;
       if (!email || !password) {
         return new Promise((resolve) => {
-          res.status(400).json({ error: "Empty" });
+          res
+            .status(400)
+            .json({ error: "Email Or Should Should Not Be Empty" });
           res.end();
           return resolve();
         });
@@ -20,7 +22,7 @@ export default async function handler(req, res) {
         const isMatch = await bcrypt.compare(password, userLogin.password);
         if (!isMatch) {
           return new Promise((resolve) => {
-            res.status(404).json({ error: "Password wrong" });
+            res.status(400).json({ error: "Password wrong" });
             res.end();
             return resolve();
           });
@@ -53,7 +55,7 @@ export default async function handler(req, res) {
     }
   } else {
     return new Promise((resolve) => {
-      res.status(401).json({ message: "Method Not Allowed" });
+      res.status(405).json({ message: "Method Not Allowed" });
       res.end();
       return resolve();
     });

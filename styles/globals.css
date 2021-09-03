@@ -72,6 +72,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 .toolbar .brand span h1 {
@@ -519,6 +520,20 @@ a {
   border-radius: 3px;
   display: block;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.private {
+  padding: 30px;
+}
+
+.private div h1 {
+  border-left: 5px solid var(--theme-color);
+  text-indent: 5px;
+}
+
+.private div p {
+  text-align: left;
+  padding: 15px;
 }
 
 @media screen and (max-width: 1144px) {

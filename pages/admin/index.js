@@ -27,30 +27,89 @@ function Admin() {
         },
         credentials: "include",
       });
-      if (res.status === 401) {
-        console.log(await res.json());
-        return;
-      }
-      if (res.status === 500) {
-        console.log(await res.json());
-        return;
-      }
+      const data = await res.json();
       if (res.status === 200) {
         setStatus(true);
+        setUserData(data);
+      } else {
+        console.log(data.message);
+        if (typeof window !== "undefined") {
+          window.alert(data.message);
+        }
+        return;
       }
-      const data = await res.json();
-      setUserData(data);
     } catch (err) {
       console.log(err);
     }
   };
   const login = async (e) => {
     e.preventDefault();
+    const checkNum = new RegExp("^[0-9]", "g");
+    const checkSpace = new RegExp(/\s/, "g");
+    const checkEmail = new RegExp(
+      "^[a-zA-Z0-9+_.-]+@[a-zA-Z]+[.][a-zA-Z]+$",
+      "g"
+    );
+    const checkemail = new RegExp("email", "ig");
+    const checkUpper = new RegExp("[A-Z]", "g");
+    const checkLower = new RegExp("[a-z]", "g");
+    const checkNumber = new RegExp("[0-9]", "g");
+    const checkSpecial = new RegExp("[@#!%]", "g");
     if (!email || !password) {
       if (typeof window !== "undefined") {
         window.alert("Email Or Pasword Field Is Empty");
         return;
       }
+    }
+    if (checkSpace.test(email) || checkSpace.test(password)) {
+      if (typeof window !== "undefined") {
+        window.alert("Email Or Pasword Field should not contain white spaces");
+      }
+      return;
+    }
+    if (checkNum.test(email)) {
+      if (typeof window !== "undefined") {
+        window.alert(
+          "email should not be a number and does not start with a number"
+        );
+      }
+      return;
+    }
+    if (!checkEmail.test(email) || checkemail.test(email)) {
+      if (typeof window !== "undefined") {
+        window.alert("Not An Email Address");
+      }
+      return;
+    }
+    if (password.length < 6) {
+      if (typeof window !== "undefined") {
+        window.alert("Password Should Be More than 6 character");
+      }
+      return;
+    }
+    if (!checkUpper.test(password)) {
+      if (typeof window !== "undefined") {
+        window.alert("Password Should Contain An UpperCase Letter");
+      }
+      return;
+    }
+    if (!checkLower.test(password)) {
+      if (typeof window !== "undefined") {
+        window.alert("Password Should Contain An LowerCase Letter");
+      }
+      return;
+    }
+    if (!checkNumber.test(password)) {
+      if (typeof window !== "undefined") {
+        window.alert("Password Should Contain An Number");
+      }
+      return;
+    }
+    if (!checkSpecial.test(password)) {
+      if (typeof window !== "undefined") {
+        window.alert("Password Should Contain any Of The @, #, %, !");
+      }
+      return;
     }
     try {
       const res = await fetch("/api/admin/", {
@@ -59,7 +118,10 @@ function Admin() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({
+          email: email.trim(),
+          password: password.trim(),
+        }),
       });
       if (res.status === 200) {
         history.reload();
@@ -67,6 +129,7 @@ function Admin() {
         if (typeof window !== "undefined") {
           console.log(await res.json());
         }
+        return;
       }
     } catch (err) {
       console.log(err);

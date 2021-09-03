@@ -1,17 +1,17 @@
 import Layout from "@/components/Layout";
 import "@/styles/globals.css";
-import "@/styles/Loading.css";
-import "@/styles/Admin.css";
-import "@/styles/Home.css";
-import "@/styles/Contact.css";
-import "@/styles/Error.css";
-import "@/styles/Signin.css";
-import "@/styles/Signup.css";
-import "@/styles/User.css";
-import "@/styles/Details.css";
-import "@/styles/Listbox.css";
-import "@/styles/Open.css";
-import "@/styles/Userhome.css";
+import "@/styles/loading.css";
+import "@/styles/admin.css";
+import "@/styles/home.css";
+import "@/styles/contact.css";
+import "@/styles/error.css";
+import "@/styles/signin.css";
+import "@/styles/signup.css";
+import "@/styles/user.css";
+import "@/styles/details.css";
+import "@/styles/listbox.css";
+import "@/styles/open.css";
+import "@/styles/userhome.css";
 
 if (typeof window !== "undefined") {
   window.addEventListener("load", () => {

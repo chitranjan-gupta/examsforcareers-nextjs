@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Footer from "@/components/Footer";
@@ -5,22 +6,16 @@ import Footer from "@/components/Footer";
 function Details() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  var param, type;
+  let param, type;
   if (router.query.exam) {
     param = `${router.query.exam.replace(/_/g, " ")}`;
     type = "New_Updates";
-    const contains = (param, str) => {
-      for (var i = 0; i < param.length; i++) {
-        if (param.charAt(i) === str.charAt(0)) {
-          if (param.substr(i, str.length) === str) {
-            return true;
-          }
-        }
-      }
+    const checkParam = (param) => {
+      return new RegExp(param, "ig");
     };
-    if (contains(param, "Admit")) {
+    if (checkParam("Admit").test(param)) {
       type = "Admit_Card";
-    } else if (contains(param, "Result")) {
+    } else if (checkParam("Result").test(param)) {
       type = "Result";
     } else {
       type = "New_Updates";
@@ -124,6 +119,16 @@ function Details() {
                           <a href={detail.link}>{detail.link}</a>
                         </li>
                       </p>
+                    </section>
+                  </>
+                ) : (
+                  <></>
+                )}
+                {detail.note ? (
+                  <>
+                    <section className="NoteBox">
+                      <h1>Note</h1>
+                      <p>{detail.note}</p>
                     </section>
                   </>
                 ) : (

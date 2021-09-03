@@ -27,7 +27,7 @@ const handler = async (req, res) => {
     });
   } else {
     return new Promise((resolve) => {
-      res.status(401).json({ message: "Method Not Allowed" });
+      res.status(405).json({ message: "Method Not Allowed" });
       res.end();
       return resolve();
     });

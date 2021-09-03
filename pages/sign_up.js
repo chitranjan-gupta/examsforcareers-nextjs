@@ -27,6 +27,17 @@ function Signup() {
   const postData = async (e) => {
     e.preventDefault();
     try {
+      const checkNum = new RegExp("^[0-9]", "g");
+      const checkSpace = new RegExp(/\s/, "g");
+      const checkEmail = new RegExp(
+        "^[a-zA-Z0-9+_.-]+@[a-zA-Z]+[.][a-zA-Z]+$",
+        "g"
+      );
+      const checkemail = new RegExp("email", "ig");
+      const checkUpper = new RegExp("[A-Z]", "g");
+      const checkLower = new RegExp("[a-z]", "g");
+      const checkNumber = new RegExp("[0-9]", "g");
+      const checkSpecial = new RegExp("[@#!%]", "g");
       const { name, email, cemail, password, cpassword } = user;
       if (!(name && email && cemail && password && cpassword)) {
         if (typeof window !== "undefined") {
@@ -42,33 +53,27 @@ function Signup() {
         }
         return;
       }
-      if (!isNaN(name)) {
+      if (name.trim().length < 2) {
         if (typeof window !== "undefined") {
-          window.alert("name should not be a number");
+          window.alert("Name Is Empty");
         }
         return;
       }
-      if (!isNaN(email)) {
+      if (checkSpace.test(email) || checkSpace.test(password)) {
         if (typeof window !== "undefined") {
-          window.alert("email should not be a number");
+          window.alert("Email or Password should not contain white spaces");
         }
         return;
       }
-      const contains = (param, str) => {
-        for (var i = 0; i < param.length; i++) {
-          if (param.charAt(i) === str.charAt(0)) {
-            if (param.substr(i, str.length) === str) {
-              return true;
-            }
-          }
+      if (checkNum.test(name) || checkNum.test(email)) {
+        if (typeof window !== "undefined") {
+          window.alert(
+            "Name or Email should not be a number or start with number"
+          );
         }
-        return false;
-      };
-      if (
-        !contains(email, ".") ||
-        !contains(email, "@") ||
-        contains(email, "email")
-      ) {
+        return;
+      }
+      if (!checkEmail.test(email) || checkemail.test(email)) {
         if (typeof window !== "undefined") {
           window.alert("Not An Email Address");
         }
@@ -80,33 +85,64 @@ function Signup() {
         }
         return;
       }
+      if (!checkUpper.test(password)) {
+        if (typeof window !== "undefined") {
+          window.alert("Password Should Contain An UpperCase Letter");
+        }
+        return;
+      }
+      if (!checkLower.test(password)) {
+        if (typeof window !== "undefined") {
+          window.alert("Password Should Contain An LowerCase Letter");
+        }
+        return;
+      }
+      if (!checkNumber.test(password)) {
+        if (typeof window !== "undefined") {
+          window.alert("Password Should Contain An Number");
+        }
+        return;
+      }
+      if (!checkSpecial.test(password)) {
+        if (typeof window !== "undefined") {
+          window.alert("Password Should Contain any Of The @, #, %, !");
+        }
+        return;
+      }
       const res = await fetch("/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name,
-          email,
-          password,
+          name: name.trim(),
+          email: email.trim(),
+          password: password.trim(),
         }),
       });
-
       const data = await res.json();
-
-      if (res.status === 422 || !data) {
-        if (typeof window !== "undefined") {
-          window.alert("Email Already Exists!");
-        }
-        console.log("Email Already Exists!");
-      } else {
+      if (res.status === 200) {
         if (typeof window !== "undefined") {
           window.alert("Successful Registration");
         }
         console.log("Successful Registration");
+        console.log(data.message);
         history.push("/sign_in");
+      } else if (res.status === 422 || !data) {
+        if (typeof window !== "undefined") {
+          window.alert("Email Already Exists!");
+        }
+        console.log("Email Already Exists!");
+        console.log(data.message);
+      } else {
+        if (typeof window !== "undefined") {
+          window.alert(data.message);
+        }
+        console.log(data);
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

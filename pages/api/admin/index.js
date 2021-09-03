@@ -10,7 +10,9 @@ export default async function handler(req, res) {
       const { email, password } = req.body;
       if (!email || !password) {
         return new Promise((resolve) => {
-          res.status(400).json({ error: "Empty" });
+          res
+            .status(400)
+            .json({ error: "Email or Password Should Not Be Empty" });
           res.end();
           return resolve();
         });
@@ -20,7 +22,7 @@ export default async function handler(req, res) {
         const isMatch = await bcrypt.compare(password, adminLogin.password);
         if (!isMatch) {
           return new Promise((resolve) => {
-            res.status(404).json({ error: "Invalid Password" });
+            res.status(400).json({ error: "Invalid Password" });
             res.end();
             return resolve();
           });
@@ -39,7 +41,7 @@ export default async function handler(req, res) {
         }
       } else {
         return new Promise((resolve) => {
-          res.status(404).json({ error: "Invalid Username" });
+          res.status(404).json({ error: "Admin Not Found" });
           res.end();
           return resolve();
         });
@@ -53,7 +55,7 @@ export default async function handler(req, res) {
     }
   } else {
     return new Promise((resolve) => {
-      res.status(401).json({ message: "Method Not Allowed" });
+      res.status(405).json({ message: "Method Not Allowed" });
       res.end();
       return resolve();
     });

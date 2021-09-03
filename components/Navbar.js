@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import Head from "next/head";
@@ -14,6 +15,7 @@ function Navbar() {
       return document.querySelector(id);
     }
   }
+  const history = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {
       if ($("#menuChoice").getElementsByClassName("highlight").length < 1) {
@@ -105,6 +107,9 @@ function Navbar() {
       }
     });
   };
+  const site = () => {
+    history.push("/");
+  };
   return (
     <>
       <Head>
@@ -116,7 +121,7 @@ function Navbar() {
         />
       </Head>
       <div className="toolbar">
-        <div className="brand">
+        <div onClick={site} className="brand">
           <div className="logo">
             <Image alt="logo" src={logo_main} />
           </div>

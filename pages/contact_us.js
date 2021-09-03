@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import emailimg from "@/images/gmail.png";
-import Footer from "components/Footer";
 import Image from "next/image";
+import emailimg from "@/images/gmail.png";
+import Footer from "@/components/Footer";
 
 function Contact() {
   if (typeof window !== "undefined") {
@@ -20,61 +20,48 @@ function Contact() {
     e.preventDefault();
     try {
       const { name, email, phone, message } = contact;
+      const checkNum = new RegExp("^[0-9]", "g");
+      const checkSpace = new RegExp(/\s/, "g");
+      const checkEmail = new RegExp(
+        "^[a-zA-Z0-9+_.-]+@[a-zA-Z]+[.][a-zA-Z]+$",
+        "g"
+      );
+      const checkemail = new RegExp("email", "ig");
       if (!(name && email && phone && message)) {
         if (typeof window !== "undefined") {
           window.alert("Every Fields Is Must");
         }
         return;
       }
-      if (!isNaN(name)) {
+      if (checkSpace.test(email)) {
         if (typeof window !== "undefined") {
-          window.alert("Name should not be a number");
+          window.alert(
+            "Email or Name or Message should not contain white spaces"
+          );
         }
         return;
       }
-      const containNumber = (param) => {
-        for (var i = 0; i < param.length; i++) {
-          if (!isNaN(param.charAt(i))) {
-            return true;
-          }
-        }
-        return false;
-      };
-      if (containNumber(name)) {
-        if (typeof window !== "undefined") {
-          window.alert("Name should not contain a number");
-        }
-        return;
-      }
-      if (!isNaN(email)) {
-        if (typeof window !== "undefined") {
-          window.alert("email should not be a number");
-        }
-        return;
-      }
-      const contains = (param, str) => {
-        for (var i = 0; i < param.length; i++) {
-          if (param.charAt(i) === str.charAt(0)) {
-            if (param.substr(i, str.length) === str) {
-              return true;
-            }
-          }
-        }
-        return false;
-      };
       if (
-        !contains(email, ".") ||
-        !contains(email, "@") ||
-        contains(email, "email")
+        checkNum.test(name) ||
+        checkNum.test(email) ||
+        checkNum.test(message)
       ) {
         if (typeof window !== "undefined") {
-          window.alert("Not An Email Address");
+          window.alert(
+            "Name or Email or Message should not be a number or start with number"
+          );
         }
         return;
       }
-      if (!isNaN(message)) {
+      if (name.trim().length < 2 || message.trim().length < 10) {
         if (typeof window !== "undefined") {
-          window.alert("message should not be a number");
+          window.alert("Name or Message Is Empty");
+        }
+        return;
+      }
+      if (!checkEmail.test(email) || checkemail.test(email)) {
+        if (typeof window !== "undefined") {
+          window.alert("Not An Email Address");
         }
         return;
       }
@@ -84,16 +71,26 @@ function Contact() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name,
-          email,
-          phone,
-          message,
+          name: name.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          message: message.trim(),
         }),
       });
       const data = await res.json();
-      console.log(res.status);
-      console.log(data);
-    } catch (err) {}
+      if (res.status === 200) {
+        if (typeof window !== "undefined") {
+          window.alert(data.message);
+        }
+        console.log(res.status);
+        console.log(data.message);
+      } else {
+        console.log(res.status);
+        console.log(data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
