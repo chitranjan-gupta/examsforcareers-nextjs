@@ -113,12 +113,15 @@ function Navbar() {
   return (
     <>
       <Head>
+        <meta charset="utf-8" />
         <title>examsforcareers.com</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta
           name="description"
           content="Information Regarding Various Government Exams, State Exams, Entrance Exams and Institute Exams"
         />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
       <div className="toolbar">
         <div onClick={site} className="brand">
@@ -127,7 +130,7 @@ function Navbar() {
           </div>
           <span>
             <h1>
-              examforcareers.
+              examsforcareers.
               <b className="th">com</b>
             </h1>
           </span>

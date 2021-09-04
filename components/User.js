@@ -38,9 +38,11 @@ function User() {
     }
   };
   function apply(event) {
+    return;
     slide5();
   }
   function next(event) {
+    return;
     history.push(
       `/user/${event.target.innerText.trim().toLowerCase().replace(/ /g, "_")}`
     );
@@ -51,6 +53,7 @@ function User() {
     }
   }
   const slide4 = () => {
+    return;
     if (typeof window !== "undefined") {
       const qs1 = $("#slide1");
       const qs2 = $("#slide2");
@@ -76,6 +79,7 @@ function User() {
     }
   };
   const slide5 = () => {
+    return;
     if (typeof window !== "undefined") {
       const qs1 = $("#slide1");
       const qs2 = $("#slide2");

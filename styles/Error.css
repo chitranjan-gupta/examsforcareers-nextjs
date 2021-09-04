@@ -14,6 +14,10 @@
   color: navajowhite;
 }
 
+.erro-home.ERROR500::before {
+  content: "500" !important;
+}
+
 .erro-home h1,
 span {
   color: black;
@@ -65,7 +69,9 @@ span {
 @media all and (orientation: portrait) {
   .erro-home {
     padding: 50px;
-    padding-top: 10px;
+  }
+  .erro-home.ERROR500 {
+    padding-top: 100px;
   }
   .erro-home::before {
     transform: rotate(90deg);

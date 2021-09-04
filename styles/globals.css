@@ -287,8 +287,8 @@ a {
 }
 
 .extra .sicon img {
-  width: 50%;
-  height: 100%;
+  width: 40% !important;
+  height: 100% !important;
 }
 
 .card-container {

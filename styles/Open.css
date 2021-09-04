@@ -248,4 +248,15 @@
     width: 97% !important;
     height: 98% !important;
   }
+  .Detail-Container.skeleton .SkeletonContentBox {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+  }
+  .Detail-Container.skeleton .SkeletonContentBox .SK.N4 {
+    display: none;
+  }
+  .Detail-Container.skeleton .aboutBox h1 {
+    width: 200px;
+    height: 25px;
+  }
 }

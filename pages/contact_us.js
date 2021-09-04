@@ -65,6 +65,12 @@ function Contact() {
         }
         return;
       }
+      if (phone.length !== 10) {
+        if (typeof window !== "undefined") {
+          window.alert("Not An Phone Number");
+        }
+        return;
+      }
       const res = await fetch("/api/users/contact", {
         method: "POST",
         headers: {

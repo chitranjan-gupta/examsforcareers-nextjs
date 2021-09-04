@@ -2,6 +2,7 @@ import dbConnect from "@/utils/dbConnect";
 export default async function handler(req, res) {
   const { method } = req;
   if (method === "POST") {
+    const Contact = require("@/models/contact");
     await dbConnect();
     try {
       const { name, email, phone, message } = req.body;
@@ -14,8 +15,15 @@ export default async function handler(req, res) {
           return resolve();
         });
       }
+      const contact = new Contact({
+        name: name,
+        email: email,
+        phone: phone,
+        messages: message,
+      });
+      await contact.save();
       return new Promise((resolve) => {
-        res.status(200).json({ message: "In Development" });
+        res.status(200).json({ message: "Thank You! We Will Contact You" });
         res.end();
         return resolve();
       });

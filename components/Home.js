@@ -55,29 +55,16 @@ function Home() {
     };
   }, []);
   const getResult = async (e) => {
-    if (searchWord) {
-      try {
-        const res = await fetch("/api/exams/search", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ abbreviation: searchWord }),
-        });
-        if (res.status === 200) {
-          history.push(`/search/${searchWord.replace(/ /g, "_")}`);
+    try {
+      if (searchWord) {
+        history.push(`/search/${searchWord.replace(/ /g, "_")}`);
+      } else {
+        if (typeof window !== "undefined") {
+          window.alert("Type The Word");
         }
-        if (res.status === 404) {
-          history.push("/404");
-          return;
-        }
-      } catch (err) {
-        console.log(err);
       }
-    } else {
-      if (typeof window !== "undefined") {
-        window.alert("Type The Word");
-      }
+    } catch (err) {
+      console.log(err);
     }
   };
   const goTo = (type) => {
@@ -120,7 +107,7 @@ function Home() {
                         href={`/details/${update.name.replace(/ /g, "_")}`}
                         scroll={false}
                       >
-                        {update.name}
+                        <a>{update.name}</a>
                       </Link>
                     </li>
                   );
@@ -155,7 +142,7 @@ function Home() {
                         href={`/details/${admit.name.replace(/ /g, "_")}`}
                         scroll={false}
                       >
-                        {admit.name}
+                        <a>{admit.name}</a>
                       </Link>
                     </li>
                   );
@@ -189,7 +176,7 @@ function Home() {
                         href={`/details/${result.name.replace(/ /g, "_")}`}
                         scroll={false}
                       >
-                        {result.name}
+                        <a>{result.name}</a>
                       </Link>
                     </li>
                   );

@@ -9,7 +9,7 @@ import CardSkeleton from "@/components/CardSkeleton";
 function Search() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  var searchWord;
+  let searchWord;
   if (router.query.exam) {
     searchWord = router.query.exam.replace(/_/g, " ");
   }
@@ -27,17 +27,23 @@ function Search() {
     });
     if (res.status === 200) {
       return await res.json();
+    } else if (res.status === 404) {
+      return { message: 404 };
     } else {
       return await res.json();
     }
   };
   useEffect(() => {
     if (!loading) {
-      getResult(searchWord).then((rel) => {
-        if (!rel.message) {
-          setRelevant(rel);
-        }
-      });
+      if (searchWord) {
+        getResult(searchWord).then((rel) => {
+          if (!rel.message) {
+            setRelevant(rel);
+          } else if (rel.message === 404) {
+            return router.push("/404");
+          }
+        });
+      }
     }
   }, [router.query.exam]);
   useEffect(() => {

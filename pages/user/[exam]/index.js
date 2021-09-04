@@ -26,12 +26,12 @@ function UserChoice() {
         credentials: "include",
       });
       if (res.status === 401) {
-        history.push("/signin");
+        history.push("/sign_in");
         console.log(await res.json());
         return;
       }
       if (res.status === 500) {
-        history.push("/signin");
+        history.push("/sign_in");
         console.log(await res.json());
         return;
       }
@@ -64,7 +64,7 @@ function UserChoice() {
       console.log("[log]Cleanup");
     };
   }, []);
-  if (!loading && loginStatus) {
+  if (false) {
     return (
       <div>
         <div className="Userhome">
@@ -91,7 +91,7 @@ function UserChoice() {
   } else {
     return (
       <>
-        <h1>Not Logined </h1>
+        <h1>In Developement</h1>
       </>
     );
   }
