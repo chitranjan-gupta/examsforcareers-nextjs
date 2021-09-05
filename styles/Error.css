@@ -5,7 +5,9 @@
   justify-content: center;
   padding: 250px;
 }
-
+.erro-home.NotFound {
+  padding: 150px !important;
+}
 .erro-home::before {
   position: absolute;
   content: "404";
@@ -69,6 +71,10 @@ span {
 @media all and (orientation: portrait) {
   .erro-home {
     padding: 50px;
+  }
+  .erro-home.NotFound {
+    padding: 50px !important;
+    padding-bottom: 170px !important;
   }
   .erro-home.ERROR500 {
     padding-top: 100px;

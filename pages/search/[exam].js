@@ -8,6 +8,7 @@ import CardSkeleton from "@/components/CardSkeleton";
 
 function Search() {
   const [loading, setLoading] = useState(false);
+  const [found, setFound] = useState(true);
   const router = useRouter();
   let searchWord;
   if (router.query.exam) {
@@ -33,6 +34,21 @@ function Search() {
       return await res.json();
     }
   };
+  const NotFound = () => {
+    return (
+      <>
+        <div className="erro-home NotFound">
+          <h1>WE ARE SORRY, NOT FOUND!</h1>
+          <span>
+            THE EXAM YOU ARE LOOKING FOR IS NOT THEIR IN THE DATABASE.
+          </span>
+          <div>
+            <button onClick={goBack}>BACK TO PREVIOUS PAGE</button>
+          </div>
+        </div>
+      </>
+    );
+  };
   useEffect(() => {
     if (!loading) {
       if (searchWord) {
@@ -40,7 +56,10 @@ function Search() {
           if (!rel.message) {
             setRelevant(rel);
           } else if (rel.message === 404) {
-            return router.push("/404");
+            if (typeof window !== "undefined") {
+              setFound(false);
+            }
+            return;
           }
         });
       }
@@ -52,41 +71,52 @@ function Search() {
       console.log("[log]Cleanup");
     };
   }, []);
+  const goBack = (e) => {
+    router.back();
+  };
   return (
     <>
       <h3>You have search for {searchWord}</h3>
-      <div className="card-container">
-        {relevant.length >= 1 ? (
-          <>
-            {relevant.map((exam) => {
-              return (
-                <div className="card" key={exam.id}>
-                  <h1>
-                    <Link
-                      href={`/${exam.categoryBase
-                        .replace(/ /g, "_")
-                        .toLowerCase()}/${exam.abbreviation.replace(
-                        / /g,
-                        "_"
-                      )}`}
-                    >
-                      {exam.abbreviation}
-                    </Link>
-                  </h1>
-                </div>
-              );
-            })}
-          </>
-        ) : (
-          <>
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-          </>
-        )}
-      </div>
-      <PageNumber />
+      {found ? (
+        <>
+          <div className="card-container">
+            {relevant.length >= 1 ? (
+              <>
+                {relevant.map((exam) => {
+                  return (
+                    <div className="card" key={exam.id}>
+                      <h1>
+                        <Link
+                          href={`/${exam.categoryBase
+                            .replace(/ /g, "_")
+                            .toLowerCase()}/${exam.abbreviation.replace(
+                            / /g,
+                            "_"
+                          )}`}
+                        >
+                          {exam.abbreviation}
+                        </Link>
+                      </h1>
+                    </div>
+                  );
+                })}
+              </>
+            ) : (
+              <>
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+              </>
+            )}
+          </div>
+          <PageNumber />
+        </>
+      ) : (
+        <>
+          <NotFound />
+        </>
+      )}
       <Footer />
     </>
   );

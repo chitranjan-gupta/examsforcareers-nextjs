@@ -12,6 +12,18 @@ function Signin() {
   const history = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  if (typeof window !== "undefined") {
+    const regGen = (param) => {
+      return new RegExp(param, "ig");
+    };
+    let reg = regGen("Android");
+    let reg1 = regGen("iphone");
+    if (
+      reg.test(window.navigator.userAgent) ||
+      reg1.test(window.navigator.userAgent)
+    ) {
+    }
+  }
   const loginUser = async (e) => {
     e.preventDefault();
     try {
@@ -113,7 +125,7 @@ function Signin() {
   };
   return (
     <div className="mainBody">
-      <section className="mainSBox">
+      <section id="signinmainSBox" className="mainSBox">
         <div className="picBox">
           <Image src={sign_in} alt="" />
         </div>

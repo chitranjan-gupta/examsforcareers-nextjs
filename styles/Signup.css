@@ -122,3 +122,20 @@
     display: none !important;
   }
 }
+@media screen and (max-width: 420px) {
+  .mainBox {
+    width: 330px !important;
+    height: 460px !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+  }
+  .mainBox .inputBox {
+    align-items: center !important;
+  }
+  .mainBox .picBox {
+    text-align: center !important;
+  }
+  .mainBox .picBox div img {
+    display: none !important;
+  }
+}

@@ -134,3 +134,25 @@
     justify-content: center;
   }
 }
+@media screen and (max-width: 420px) {
+  .mainSBox {
+    width: 300px !important;
+    height: 380px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+  .mainSBox .inputBox {
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 50px !important;
+  }
+  .mainSBox .picBox {
+    display: none !important;
+  }
+  .submitbox {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+}
