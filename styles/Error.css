@@ -79,6 +79,9 @@ span {
   .erro-home.ERROR500 {
     padding-top: 100px;
   }
+  .erro-home.NotFound::before {
+    transform: rotate(90deg) !important;
+  }
   .erro-home::before {
     transform: rotate(90deg);
     margin-top: 100px;
