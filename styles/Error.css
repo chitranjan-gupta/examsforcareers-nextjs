@@ -74,13 +74,15 @@ span {
   }
   .erro-home.NotFound {
     padding: 50px !important;
-    padding-bottom: 170px !important;
+    padding-bottom: 100px !important;
   }
   .erro-home.ERROR500 {
     padding-top: 100px;
   }
   .erro-home.NotFound::before {
-    transform: rotate(90deg) !important;
+    transform: rotate(0deg) !important;
+    font-size: 190px;
+    margin-top: 0;
   }
   .erro-home::before {
     transform: rotate(90deg);
