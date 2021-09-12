@@ -245,7 +245,7 @@ a {
 }
 
 .extra .extra-for h1 {
-  font-size: 100px;
+  font-size: 100px !important;
   color: white;
   border-left: 6px solid dodgerblue;
   padding-left: 10px;
@@ -272,7 +272,7 @@ a {
 }
 
 .extra input[type="text"]::placeholder {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 
 .extra .sicon {
@@ -476,7 +476,7 @@ a {
 }
 
 .copyright .disclaimer {
-  font-size: small;
+  font-size: small !important;
   white-space: pre-wrap;
   text-decoration: none;
   color: black;
@@ -576,19 +576,19 @@ a {
 
 @media screen and (max-width: 1144px) {
   .toolbar .menu div {
-    font-size: 14px;
+    font-size: 14px !important;
   }
 }
 
 @media screen and (max-width: 1100px) {
   .toolbar .menu div {
-    font-size: 13px;
+    font-size: 13px !important;
   }
 }
 
 @media screen and (max-width: 1064px) {
   .toolbar .menu div {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .card-container {
     grid-template-columns: 200px 200px 200px 200px 200px;
@@ -597,18 +597,18 @@ a {
 }
 @media screen and (max-width: 1030px) {
   .toolbar .menu div {
-    font-size: 11px;
+    font-size: 11px !important;
   }
 }
 @media screen and (max-width: 984px) {
   .toolbar .menu div {
-    font-size: 10px;
+    font-size: 10px !important;
   }
 }
 
 @media screen and (max-width: 946px) {
   .toolbar .menu div {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .toolbar .menu div:last-child {
     display: none;
@@ -623,7 +623,7 @@ a {
 
 @media screen and (max-width: 860px) {
   .toolbar .menu div {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .card-container {
     grid-template-columns: 200px 200px 200px 200px;
@@ -669,20 +669,20 @@ a {
     align-items: center;
   }
   .extra .extra-for h1 {
-    font-size: 65px;
+    font-size: 65px !important;
     align-self: left;
   }
   .extra .extra-for .searchbar {
     width: 300px;
   }
   .toolbar .brand h1 {
-    font-size: 20px;
+    font-size: 20px !important;
   }
 }
 
 @media screen and (max-width: 450px) {
   .toolbar .brand h1 {
-    font-size: 24px;
+    font-size: 24px !important;
   }
   .card-container {
     grid-template-columns: 200px 200px;
@@ -698,13 +698,13 @@ a {
 
 @media screen and (max-width: 365px) {
   .toolbar .brand h1 {
-    font-size: 22px;
+    font-size: 22px !important;
   }
   .copyright .weight {
-    font-size: smaller;
+    font-size: smaller !important;
   }
   .extra h1 {
-    font-size: 27px;
+    font-size: 27px !important;
   }
   .garmi {
     animation: 1s ease 1s normal forwards 1 fadein;
@@ -725,14 +725,14 @@ a {
     align-items: center;
   }
   .extra .extra-for h1 {
-    font-size: 65px;
+    font-size: 65px !important;
     align-self: left;
   }
   .extra .extra-for .searchbar {
     width: 300px;
   }
   .toolbar .brand h1 {
-    font-size: 20px;
+    font-size: 20px !important;
   }
   .card-container {
     grid-template-columns: 140px 140px;
