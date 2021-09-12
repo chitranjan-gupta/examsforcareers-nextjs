@@ -325,9 +325,14 @@ a {
 }
 
 .card-container .card h1 a {
-  color: black;
+  color: #000;
   text-align: center;
   text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  width: 145px;
 }
 
 .card-container .card:hover {
