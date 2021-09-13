@@ -12,7 +12,7 @@ const handler = async (req, res) => {
       const Admit = require("@/models/admit");
       const Result = require("@/models/result");
       await dbConnect();
-      switch (req.body.type.trim()) {
+      switch (req.body.addType.trim()) {
         case "New_Exam": {
           const exam = await Exam.findOne({
             abbreviation: req.body.abbreviation,

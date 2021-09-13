@@ -13,7 +13,7 @@ const handler = async (req, res) => {
       const Admit = require("@/models/admit");
       const Result = require("@/models/result");
       await dbConnect();
-      switch (req.body.type) {
+      switch (req.body.upType) {
         case "New_Exam": {
           //const data = req.body.data;
           // const result = await Exam.updateOne(

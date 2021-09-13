@@ -12,7 +12,7 @@ const handler = async (req, res) => {
     await dbConnect();
     return new Promise((resolve) => {
       try {
-        switch (req.body.type) {
+        switch (req.body.deType) {
           case "New_Exam": {
             Exam.findById(id)
               .then((exam) => {
