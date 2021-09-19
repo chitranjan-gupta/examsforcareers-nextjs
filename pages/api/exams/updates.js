@@ -11,9 +11,13 @@ export default async function handler(req, res) {
         if (req.body.type) {
           switch (req.body.type.trim()) {
             case "New_Updates": {
+              if (!req.body.pageNum) {
+                req.body.pageNum = 0;
+              }
               Update.find()
                 .sort({ date: -1 })
-                .limit(20)
+                .skip(req.body.pageNum * 10)
+                .limit(10)
                 .then((update) => {
                   var arr = update.map((upd) => {
                     return {
@@ -28,9 +32,13 @@ export default async function handler(req, res) {
               break;
             }
             case "Admit_Card": {
+              if (!req.body.pageNum) {
+                req.body.pageNum = 0;
+              }
               Admit.find()
                 .sort({ date: -1 })
-                .limit(20)
+                .skip(req.body.pageNum * 10)
+                .limit(10)
                 .then((admit) => {
                   var arr = admit.map((adm) => {
                     return {
@@ -45,9 +53,13 @@ export default async function handler(req, res) {
               break;
             }
             case "Result": {
+              if (!req.body.pageNum) {
+                req.body.pageNum = 0;
+              }
               Result.find()
                 .sort({ date: -1 })
-                .limit(20)
+                .skip(req.body.pageNum * 10)
+                .limit(10)
                 .then((result) => {
                   var arr = result.map((re) => {
                     return {

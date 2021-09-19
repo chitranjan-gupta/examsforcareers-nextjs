@@ -85,18 +85,28 @@ function Search() {
                 {relevant.map((exam) => {
                   return (
                     <div className="card" key={exam.id}>
-                      <h1>
-                        <Link
-                          href={`/${exam.categoryBase
-                            .replace(/ /g, "_")
-                            .toLowerCase()}/${exam.abbreviation.replace(
-                            / /g,
-                            "_"
-                          )}`}
-                        >
-                          {exam.abbreviation}
-                        </Link>
-                      </h1>
+                      {exam.abbreviation ? (
+                        <h1>
+                          <Link
+                            href={`/${exam.categoryBase
+                              .replace(/ /g, "_")
+                              .toLowerCase()}/${exam.abbreviation.replace(
+                              / /g,
+                              "_"
+                            )}`}
+                          >
+                            {exam.abbreviation}
+                          </Link>
+                        </h1>
+                      ) : (
+                        <h1>
+                          <Link
+                            href={`/details/${exam.name.replace(/ /g, "_")}`}
+                          >
+                            {exam.name}
+                          </Link>
+                        </h1>
+                      )}
                     </div>
                   );
                 })}

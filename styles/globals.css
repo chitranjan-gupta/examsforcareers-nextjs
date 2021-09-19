@@ -373,6 +373,7 @@ a {
 }
 
 .pagenumber {
+  user-select: none;
   width: 100%;
   color: black;
   display: flex;

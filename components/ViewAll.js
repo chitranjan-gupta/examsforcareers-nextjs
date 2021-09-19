@@ -5,15 +5,24 @@ import { useRouter } from "next/router";
 import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
 
-function ViewAll() {
+function ViewAll({ type }) {
   const [loading, setLoading] = useState(false);
+  let pageNum = 0;
   const router = useRouter();
-  var param;
-  if (router.query.type) {
-    param = router.query.type.replace(/_/g, " ");
+  if (type) {
+    if (typeof window !== "undefined") {
+      document.title = type.replace(/_/g, " ");
+    }
   }
-  if (typeof window !== "undefined") {
-    document.title = param;
+  if (router.query.no) {
+    const checkNum = new RegExp("^[0-9]", "g");
+    if (!checkNum.test(router.query.no)) {
+      pageNum = 0;
+    } else if (router.query.no === "0") {
+      pageNum = 0;
+    } else {
+      pageNum = parseInt(router.query.no) - 1;
+    }
   }
   const [updates, setUpdates] = useState([]);
   const request = async (type) => {
@@ -22,7 +31,7 @@ function ViewAll() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ type: type }),
+      body: JSON.stringify({ type: type, pageNum: pageNum }),
     });
     if (res.status === 200) {
       setUpdates(await res.json());
@@ -30,9 +39,9 @@ function ViewAll() {
   };
   useEffect(() => {
     if (!loading) {
-      request(router.query.type);
+      request(type);
     }
-  }, [router.query.type]);
+  }, [type, pageNum]);
   useEffect(() => {
     return function cleanup() {
       setLoading(true);
@@ -54,7 +63,7 @@ function ViewAll() {
           })}
         </div>
       </div>
-      <PageNumber />
+      <PageNumber page={router.query.no} />
       <Footer />
     </>
   );

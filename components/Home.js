@@ -27,7 +27,7 @@ function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ type: type }),
+      body: JSON.stringify({ type: type, pageNum: 0 }),
     });
     return await res.json();
   };

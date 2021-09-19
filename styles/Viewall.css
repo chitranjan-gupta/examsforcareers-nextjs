@@ -25,6 +25,11 @@
 .ListBox li a {
   color: black;
   text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  width: calc(100% - 30px);
 }
 
 .ListBox::-webkit-scrollbar {
@@ -40,8 +45,14 @@
 }
 
 @media all and (orientation: portrait) {
+  .ListBox-Container {
+    display: block;
+  }
   .ListBox {
-    width: 95%;
-    height: 95%;
+    width: 100% !important;
+    height: 99% !important;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
   }
 }

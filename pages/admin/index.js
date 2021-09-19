@@ -88,24 +88,24 @@ function Admin() {
       }
       return;
     }
-    if (!checkUpper.test(password)) {
-      if (typeof window !== "undefined") {
-        window.alert("Password Should Contain An UpperCase Letter");
-      }
-      return;
-    }
+    // if (!checkUpper.test(password)) {
+    //   if (typeof window !== "undefined") {
+    //     window.alert("Password Should Contain An UpperCase Letter");
+    //   }
+    //   return;
+    // }
     if (!checkLower.test(password)) {
       if (typeof window !== "undefined") {
         window.alert("Password Should Contain An LowerCase Letter");
       }
       return;
     }
-    if (!checkNumber.test(password)) {
-      if (typeof window !== "undefined") {
-        window.alert("Password Should Contain An Number");
-      }
-      return;
-    }
+    // if (!checkNumber.test(password)) {
+    //   if (typeof window !== "undefined") {
+    //     window.alert("Password Should Contain An Number");
+    //   }
+    //   return;
+    // }
     if (!checkSpecial.test(password)) {
       if (typeof window !== "undefined") {
         window.alert("Password Should Contain any Of The @, #, %, !");

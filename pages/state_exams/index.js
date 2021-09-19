@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
 import CardSkeleton from "@/components/CardSkeleton";
 
@@ -84,7 +83,6 @@ function State_Exams() {
           </>
         )}
       </div>
-      <PageNumber />
       <Footer />
     </div>
   );
