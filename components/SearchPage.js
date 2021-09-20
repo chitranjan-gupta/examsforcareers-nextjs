@@ -6,25 +6,36 @@ import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
 import CardSkeleton from "@/components/CardSkeleton";
 
-function Search() {
+function SearchPage() {
   const [loading, setLoading] = useState(false);
   const [found, setFound] = useState(true);
   const router = useRouter();
-  let searchWord;
+  let searchWord,
+    pageNum = 0;
   if (router.query.exam) {
     searchWord = router.query.exam.replace(/_/g, " ");
+  }
+  if (router.query.no) {
+    const checkNum = new RegExp("^[0-9]", "g");
+    if (!checkNum.test(router.query.no)) {
+      pageNum = 0;
+    } else if (router.query.no === "0") {
+      pageNum = 0;
+    } else {
+      pageNum = parseInt(router.query.no) - 1;
+    }
   }
   if (typeof window !== "undefined") {
     document.title = searchWord;
   }
   const [relevant, setRelevant] = useState([]);
-  const getResult = async (e) => {
+  const getResult = async (searchWord, pageNum) => {
     const res = await fetch("/api/exams/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ abbreviation: searchWord }),
+      body: JSON.stringify({ abbreviation: searchWord, pageNum: pageNum }),
     });
     if (res.status === 200) {
       return await res.json();
@@ -52,7 +63,7 @@ function Search() {
   useEffect(() => {
     if (!loading) {
       if (searchWord) {
-        getResult(searchWord).then((rel) => {
+        getResult(searchWord, pageNum).then((rel) => {
           if (!rel.message) {
             setRelevant(rel);
           } else if (rel.message === 404) {
@@ -64,7 +75,7 @@ function Search() {
         });
       }
     }
-  }, [router.query.exam]);
+  }, [router.query.exam, pageNum]);
   useEffect(() => {
     return function cleanup() {
       setLoading(true);
@@ -120,7 +131,7 @@ function Search() {
               </>
             )}
           </div>
-          <PageNumber />
+          <PageNumber page={router.query.no} />
         </>
       ) : (
         <>
@@ -132,4 +143,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SearchPage;

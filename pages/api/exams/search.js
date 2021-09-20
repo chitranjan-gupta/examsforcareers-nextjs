@@ -7,98 +7,101 @@ export default async function handler(req, res) {
     const Admit = require("@/models/admit");
     const Result = require("@/models/result");
     await dbConnect();
-    return new Promise((resolve) => {
-      try {
-        if (req.body.abbreviation) {
-          let results = [];
-          let exam, update, admit, result, reg;
-          reg = new RegExp(req.body.abbreviation.trim(), "ig");
-          exam = Exam.find({ abbreviation: reg })
-            .sort({ updated_at: -1 })
-            .sort({ created_at: -1 })
-            .limit(10);
-          update = Update.find({ name: reg })
-            .sort({ updated_at: -1 })
-            .sort({ created_at: -1 })
-            .limit(10);
-          admit = Admit.find({ name: reg })
-            .sort({ updated_at: -1 })
-            .sort({ created_at: -1 })
-            .limit(10);
-          result = Result.find({ name: reg })
-            .sort({ updated_at: -1 })
-            .sort({ created_at: -1 })
-            .limit(10);
-          exam.exec((err, data) => {
-            if (!err) {
-              if (data && data.length && data.length > 0) {
-                data.forEach((exa) => {
-                  let obj = {
-                    id: exa._id,
-                    abbreviation: exa.abbreviation,
-                    categoryBase: exa.categoryBase,
-                  };
-                  if (exa.categoryBase === "Board Exams") {
-                    obj.categoryBase = "state exams/" + exa.categoryMain;
-                  }
-                  results.push(obj);
-                });
-                res.status(200).json(results);
-                res.end();
-                return resolve();
-              } else {
-                res.status(404).json([{ message: "Not Found" }]);
-                res.end();
-                return resolve();
-              }
+    async function ExamSearch(reg) {
+      const exam = await Exam.find({ abbreviation: reg })
+        .sort({ updated_at: -1 })
+        .sort({ created_at: -1 })
+        .limit(5);
+      return exam;
+    }
+    async function UpdateSearch(reg) {
+      const update = await Update.find({ name: reg })
+        .sort({ updated_at: -1 })
+        .sort({ created_at: -1 })
+        .limit(5);
+      return update;
+    }
+    async function AdmitSearch(reg) {
+      const admit = await Admit.find({ name: reg })
+        .sort({ updated_at: -1 })
+        .sort({ created_at: -1 })
+        .limit(5);
+      return admit;
+    }
+    async function ResultSearch(reg) {
+      const result = await Result.find({ name: reg })
+        .sort({ updated_at: -1 })
+        .sort({ created_at: -1 })
+        .limit(5);
+      return result;
+    }
+    try {
+      if (req.body.abbreviation) {
+        let results = [];
+        const reg = new RegExp(req.body.abbreviation.trim(), "ig");
+        const exams = await ExamSearch(reg);
+        const updates = await UpdateSearch(reg);
+        const admits = await AdmitSearch(reg);
+        const result = await ResultSearch(reg);
+        if (exams.length >= 1) {
+          exams.forEach((exa) => {
+            let obj = {
+              id: exa._id,
+              abbreviation: exa.abbreviation,
+              categoryBase: exa.categoryBase,
+            };
+            if (exa.categoryBase === "Board Exams") {
+              obj.categoryBase = "state exams/" + exa.categoryMain;
             }
-          });
-          update.exec((err, data) => {
-            if (!err) {
-              if (data && data.length && data.length > 0) {
-                data.forEach((exa) => {
-                  let obj = {
-                    id: exa._id,
-                    name: exa.name,
-                  };
-                  results.push(obj);
-                });
-              }
-            }
-          });
-          admit.exec((err, data) => {
-            if (!err) {
-              if (data && data.length && data.length > 0) {
-                data.forEach((exa) => {
-                  let obj = {
-                    id: exa._id,
-                    name: exa.name,
-                  };
-                  results.push(obj);
-                });
-              }
-            }
-          });
-          result.exec((err, data) => {
-            if (!err) {
-              if (data && data.length && data.length > 0) {
-                data.forEach((exa) => {
-                  let obj = {
-                    id: exa._id,
-                    name: exa.name,
-                  };
-                  results.push(obj);
-                });
-              }
-            }
+            results.push(obj);
           });
         }
-      } catch (err) {
+        if (updates.length >= 1) {
+          updates.forEach((exa) => {
+            let obj = {
+              id: exa._id,
+              name: exa.name,
+            };
+            results.push(obj);
+          });
+        }
+        if (admits.length >= 1) {
+          admits.forEach((exa) => {
+            let obj = {
+              id: exa._id,
+              name: exa.name,
+            };
+            results.push(obj);
+          });
+        }
+        if (result.length >= 1) {
+          result.forEach((exa) => {
+            let obj = {
+              id: exa._id,
+              name: exa.name,
+            };
+            results.push(obj);
+          });
+        }
+        return new Promise((resolve) => {
+          if (results.length >= 1) {
+            res.status(200).json(results);
+            res.end();
+            return resolve();
+          } else {
+            res.status(404).json({ message: "Not Found" });
+            res.end();
+            return resolve();
+          }
+        });
+      }
+    } catch (err) {
+      return new Promise((resolve) => {
         res.status(500).json([{ message: "Error In Server" }]);
         res.end();
         return resolve();
-      }
-    });
+      });
+    }
   } else {
     return new Promise((resolve) => {
       res.status(405).json({ message: "Method Not Allowed" });
