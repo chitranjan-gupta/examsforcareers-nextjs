@@ -1,8 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import PageNumber from "@/components/PageNumber";
 import Footer from "@/components/Footer";
+import CardSkeleton from "@/components/CardSkeleton";
 
 function OthersExams() {
   const [loading, setLoading] = useState(false);
@@ -23,12 +25,12 @@ function OthersExams() {
   }
   const [exams, setExams] = useState([]);
   const getExams = async (pageNum) => {
-    const res = await fetch("/api/exams/category", {
+    const res = await fetch("/api/exams/categoryall", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ categoryBase: "Others Exam", pageNum: pageNum }),
+      body: JSON.stringify({ type: "Category", pageNum: pageNum }),
     });
     setExams(await res.json());
   };
@@ -36,21 +38,37 @@ function OthersExams() {
     if (!loading) {
       getExams(pageNum);
     }
+  }, [pageNum]);
+  useEffect(() => {
     return function cleanup() {
       setLoading(true);
       console.log("[log]Cleanup");
     };
-  }, [pageNum]);
+  }, []);
   return (
     <div>
       <div className="card-container">
-        {exams.map((exam) => {
-          return (
-            <div className="card" key={exam._id}>
-              <h1>{exam.abbreviation}</h1>
-            </div>
-          );
-        })}
+        {exams.length >= 1 ? (
+          <>
+            {exams.map((exam) => {
+              return (
+                <div className="card" key={exam._id}>
+                  <h1>
+                    <Link href={""}>{exam.name}</Link>
+                  </h1>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        )}
       </div>
       <PageNumber page={router.query.no} />
       <Footer />

@@ -11,6 +11,7 @@ const handler = async (req, res) => {
       const Update = require("@/models/updates");
       const Admit = require("@/models/admit");
       const Result = require("@/models/result");
+      const Category = require("@/models/category");
       await dbConnect();
       switch (req.body.addType.trim()) {
         case "New_Exam": {
@@ -109,6 +110,15 @@ const handler = async (req, res) => {
           });
           const newresult = await newResult.save();
           Jsondata = JSON.stringify(newresult);
+          StatusCode = 200;
+          break;
+        }
+        case "Category": {
+          const newCategory = new Category({
+            name: req.body.name,
+          });
+          const newcategory = await newCategory.save();
+          Jsondata = JSON.stringify(newcategory);
           StatusCode = 200;
           break;
         }

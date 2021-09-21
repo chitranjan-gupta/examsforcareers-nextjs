@@ -7,31 +7,38 @@ export default async function handler(req, res) {
     const Admit = require("@/models/admit");
     const Result = require("@/models/result");
     await dbConnect();
-    async function ExamSearch(reg) {
+    if (!req.body.pageNum) {
+      req.body.pageNum = 0;
+    }
+    async function ExamSearch(reg, ski) {
       const exam = await Exam.find({ abbreviation: reg })
         .sort({ updated_at: -1 })
         .sort({ created_at: -1 })
+        .skip(ski * 5)
         .limit(5);
       return exam;
     }
-    async function UpdateSearch(reg) {
+    async function UpdateSearch(reg, ski) {
       const update = await Update.find({ name: reg })
         .sort({ updated_at: -1 })
         .sort({ created_at: -1 })
+        .skip(ski * 5)
         .limit(5);
       return update;
     }
-    async function AdmitSearch(reg) {
+    async function AdmitSearch(reg, ski) {
       const admit = await Admit.find({ name: reg })
         .sort({ updated_at: -1 })
         .sort({ created_at: -1 })
+        .skip(ski * 5)
         .limit(5);
       return admit;
     }
-    async function ResultSearch(reg) {
+    async function ResultSearch(reg, ski) {
       const result = await Result.find({ name: reg })
         .sort({ updated_at: -1 })
         .sort({ created_at: -1 })
+        .skip(ski * 5)
         .limit(5);
       return result;
     }
@@ -39,10 +46,10 @@ export default async function handler(req, res) {
       if (req.body.abbreviation) {
         let results = [];
         const reg = new RegExp(req.body.abbreviation.trim(), "ig");
-        const exams = await ExamSearch(reg);
-        const updates = await UpdateSearch(reg);
-        const admits = await AdmitSearch(reg);
-        const result = await ResultSearch(reg);
+        const exams = await ExamSearch(reg, req.body.pageNum);
+        const updates = await UpdateSearch(reg, req.body.pageNum);
+        const admits = await AdmitSearch(reg, req.body.pageNum);
+        const result = await ResultSearch(reg, req.body.pageNum);
         if (exams.length >= 1) {
           exams.forEach((exa) => {
             let obj = {

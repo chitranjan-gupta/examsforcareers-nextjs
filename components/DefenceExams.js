@@ -38,11 +38,13 @@ function DefenceExams() {
     if (!loading) {
       getExams(pageNum);
     }
+  }, [pageNum]);
+  useEffect(() => {
     return function cleanup() {
       setLoading(true);
       console.log("[log]Cleanup");
     };
-  }, [pageNum]);
+  }, []);
   return (
     <div>
       <div className="card-container">

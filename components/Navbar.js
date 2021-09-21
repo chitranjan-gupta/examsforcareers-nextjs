@@ -51,6 +51,7 @@ function Navbar() {
           150
         );
         background.classList.add("open");
+        $(".arrow").classList.remove("arrowspecial");
         const dropdown = this.querySelector(".dropdown");
         const dropdownCoords = dropdown.getBoundingClientRect();
         const navCoords = nav.getBoundingClientRect();
@@ -60,11 +61,21 @@ function Navbar() {
           top: dropdownCoords.top - navCoords.top,
           left: dropdownCoords.left - navCoords.left,
         };
+        if (dropdown.classList.contains("special")) {
+          $(".arrow").classList.add("arrowspecial");
+          background.style.setProperty("width", `${coords.width}px`);
+          background.style.setProperty("height", `70px`);
+          background.style.setProperty(
+            "transform",
+            `translate(${coords.left}px, 60.5px)`
+          );
+          return;
+        }
         background.style.setProperty("width", `${coords.width}px`);
         background.style.setProperty("height", `${coords.height}px`);
         background.style.setProperty(
           "transform",
-          `translate(${coords.left}px, 60.5px)`
+          `translate(${coords.left}px, 55.5px)`
         );
       }
       function handleLeave() {
@@ -187,7 +198,7 @@ function Navbar() {
             <Link href="/others_exams">
               <a>Others Exams</a>
             </Link>
-            <div className="dropdown">Other Categories Of Exams</div>
+            <div className="dropdown special">Other Categories Of Exams</div>
           </div>
         </div>
       </div>

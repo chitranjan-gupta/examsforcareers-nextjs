@@ -6,12 +6,16 @@ import Footer from "@/components/Footer";
 import PageNumber from "@/components/PageNumber";
 import CardSkeleton from "@/components/CardSkeleton";
 
-function CentralExams() {
+function CategoryExams() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  let pageNum = 0;
+  let categoryName = "",
+    pageNum = 0;
+  if (router.query.category) {
+    categoryName = router.query.category.replace(/_/g, " ");
+  }
   if (typeof window !== "undefined") {
-    document.title = "Central Exams";
+    document.title = categoryName;
   }
   if (router.query.no) {
     const checkNum = new RegExp("^[0-9]", "g");
@@ -24,21 +28,24 @@ function CentralExams() {
     }
   }
   const [exams, setExams] = useState([]);
-  const getExams = async (pageNum) => {
+  const getExams = async (categoryName, pageNum) => {
     const res = await fetch("/api/exams/category", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ categoryMain: "Central", pageNum: pageNum }),
+      body: JSON.stringify({
+        categoryBase: categoryName,
+        pageNum: pageNum,
+      }),
     });
     setExams(await res.json());
   };
   useEffect(() => {
     if (!loading) {
-      getExams(pageNum);
+      getExams(categoryName, pageNum);
     }
-  }, [pageNum]);
+  }, [categoryName, pageNum]);
   useEffect(() => {
     return function cleanup() {
       setLoading(true);
@@ -56,10 +63,10 @@ function CentralExams() {
                   <div className="card" key={exam._id}>
                     <h1>
                       <Link
-                        href={`/central_exams/${exam.abbreviation.replace(
+                        href={`/others_exams/${categoryName.replace(
                           / /g,
                           "_"
-                        )}`}
+                        )}/${exam.abbreviation.replace(/ /g, "_")}`}
                       >
                         {exam.abbreviation}
                       </Link>
@@ -85,4 +92,4 @@ function CentralExams() {
   );
 }
 
-export default CentralExams;
+export default CategoryExams;

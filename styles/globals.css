@@ -137,10 +137,12 @@ a {
   height: 20px;
   display: block;
   background: white;
-  transform: translateY(-30px) rotate(45deg);
+  transform: translateY(-25px) rotate(45deg);
   opacity: 1;
 }
-
+.toolbar .menu .dropdownBackground .arrow.arrowspecial {
+  transform: translateY(-30px) rotate(45deg) !important;
+}
 .toolbar .menu div {
   display: flex;
   justify-content: center;
@@ -162,7 +164,7 @@ a {
   opacity: 0;
   position: absolute;
   overflow: hidden;
-  padding: 20px;
+  padding: 15px;
   top: -39px;
   border-radius: 2px;
   transition: all 0.5s;
@@ -171,7 +173,9 @@ a {
   display: none;
   color: black;
 }
-
+.toolbar .menu div .dropdown.special {
+  top: -57px;
+}
 .toolbar .menu .trigger-enter .dropdown {
   display: block;
 }
