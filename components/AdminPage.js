@@ -4,11 +4,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import logo_main from "@/images/logo_main.png";
 import person from "@/images/person.svg";
-import edit from "@/images/edit.svg";
 import search from "@/images/search.svg";
 import emailimg from "@/images/gmail.png";
 
-function Admin() {
+function AdminPage(props) {
   const [loading, setLoading] = useState(false);
   const [loginStatus, setStatus] = useState(false);
   const [email, setEmail] = useState("");
@@ -136,15 +135,64 @@ function Admin() {
       console.log(err);
     }
   };
+  function $(el) {
+    return document.querySelector(el);
+  }
+  function ActiveListBox(red) {
+    const el = $(`#${red}`);
+    if (el) {
+      const elBox = document
+        .querySelector("ul#contentURL")
+        .querySelectorAll("li");
+      if (elBox) {
+        elBox.forEach((elem) => {
+          if (elem.classList.contains("activeListBox")) {
+            elem.classList.remove("activeListBox");
+          }
+        });
+      }
+      if (!el.classList.contains("activeListBox")) {
+        el.classList.add("activeListBox");
+      }
+    }
+  }
+  useEffect(() => {
+    if (!loading && loginStatus) {
+      ActiveListBox(props.redTo.toString());
+    }
+  });
   useEffect(() => {
     if (!loading) {
       checkStatus();
     }
+  }, []);
+  useEffect(() => {
     return function cleanup() {
       setLoading(true);
       console.log("[log]Cleanup");
     };
   }, []);
+  function changeProps(event) {
+    const el = event.target;
+    const elBox = document
+      .querySelector("ul#contentURL")
+      .querySelectorAll("li");
+    if (elBox) {
+      elBox.forEach((elem) => {
+        if (!(elem === el)) {
+          if (elem.classList.contains("activeListBox")) {
+            elem.classList.remove("activeListBox");
+          }
+        }
+      });
+    }
+    if (!el.classList.contains("activeListBox")) {
+      el.classList.add("activeListBox");
+      if (el.innerText) {
+        history.push(`/admin/${el.innerText.toLowerCase().replace(/ /g, "_")}`);
+      }
+    }
+  }
   if (!loading && loginStatus) {
     return (
       <div className="adminBox">
@@ -165,8 +213,13 @@ function Admin() {
                   <b>Founder</b>
                 </span>
               </div>
-              <ul>
-                <li className="activeListBox">
+              <ul id="contentURL">
+                <li
+                  className="activeListBox"
+                  onClick={(event) => changeProps(event)}
+                  id="dashboard"
+                  name="dashboard"
+                >
                   <div>
                     <svg
                       viewBox="0 0 1664 1280"
@@ -181,7 +234,11 @@ function Admin() {
                   </div>
                   DashBoard
                 </li>
-                <li>
+                <li
+                  id="posts"
+                  name="posts"
+                  onClick={(event) => changeProps(event)}
+                >
                   <div>
                     <svg
                       viewBox="0 0 1792 1280"
@@ -196,7 +253,7 @@ function Admin() {
                   </div>
                   Posts
                 </li>
-                <li>
+                <li onClick={(event) => changeProps(event)}>
                   <div>
                     <svg
                       viewBox="0 0 1024 768"
@@ -211,7 +268,11 @@ function Admin() {
                   </div>
                   Customers
                 </li>
-                <li>
+                <li
+                  id="messages"
+                  name="messages"
+                  onClick={(event) => changeProps(event)}
+                >
                   <div>
                     <svg
                       viewBox="0 0 1024 768"
@@ -226,7 +287,7 @@ function Admin() {
                   </div>
                   Messages
                 </li>
-                <li>
+                <li onClick={(event) => changeProps(event)}>
                   <div>
                     <svg
                       viewBox="0 0 1024 768"
@@ -241,7 +302,7 @@ function Admin() {
                   </div>
                   Help
                 </li>
-                <li>
+                <li onClick={(event) => changeProps(event)}>
                   <div>
                     <svg
                       viewBox="0 0 1792 1280"
@@ -256,7 +317,7 @@ function Admin() {
                   </div>
                   Settings
                 </li>
-                <li>
+                <li onClick={(event) => changeProps(event)}>
                   <div>
                     <svg
                       viewBox="0 0 320 384"
@@ -271,7 +332,7 @@ function Admin() {
                   </div>
                   Password
                 </li>
-                <li>
+                <li onClick={(event) => changeProps(event)}>
                   <div>
                     <svg
                       viewBox="0 0 320 384"
@@ -291,7 +352,7 @@ function Admin() {
           </div>
           <div className="workBox">
             <header>
-              <h1>Dashboard</h1>
+              <h1>{props.redTo.toUpperCase()}</h1>
               <div className="seimg">
                 <input type="text" placeholder="Search here" />
                 <div className="simg">
@@ -299,37 +360,7 @@ function Admin() {
                 </div>
               </div>
             </header>
-            <div className="contentBox">
-              <div>
-                <h1>Hello, {userData.name || "John Doe"}</h1>
-              </div>
-              <div className="statBox">
-                <div className="statCard">
-                  <div className="imgC">
-                    <Image alt="edit" src={edit} />
-                  </div>
-                  <span>Total Posts</span>
-                  <h3>1000</h3>
-                  <i>Increased by 60%</i>
-                </div>
-                <div className="statCard">
-                  <div className="imgC">
-                    <Image alt="edit" src={edit} />
-                  </div>
-                  <span>Total Posts</span>
-                  <h3>1000</h3>
-                  <i>Increased by 60%</i>
-                </div>
-                <div className="statCard">
-                  <div className="imgC">
-                    <Image alt="edit" src={edit} />
-                  </div>
-                  <span>Total Posts</span>
-                  <h3>1000</h3>
-                  <i>Increased by 60%</i>
-                </div>
-              </div>
-            </div>
+            <div className="contentBox">{props.children}</div>
           </div>
         </section>
       </div>
@@ -396,4 +427,4 @@ function Admin() {
   }
 }
 
-export default Admin;
+export default AdminPage;

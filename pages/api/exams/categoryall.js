@@ -14,8 +14,8 @@ export default async function handler(req, res) {
             .sort({ date: -1 })
             .skip(req.body.pageNum * 20)
             .limit(20)
-            .then((exam) => {
-              res.status(200).json(exam);
+            .then((cate) => {
+              res.status(200).json(cate);
               res.end();
               return resolve();
             });
@@ -24,8 +24,8 @@ export default async function handler(req, res) {
           Category.find({ name: reg })
             .sort({ date: -1 })
             .limit(20)
-            .then((exam) => {
-              res.status(200).json(exam);
+            .then((cate) => {
+              res.status(200).json(cate);
               res.end();
               return resolve();
             });

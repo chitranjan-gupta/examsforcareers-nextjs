@@ -1,0 +1,171 @@
+.AdminPostPage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+.AdminPostPage .AdminPostAdd {
+  position: relative;
+  top: 0%;
+  left: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: self-end;
+  width: 50px;
+  height: 50px;
+}
+.AdminPostPage .AdminPostAdd .AdminPostAddOptions {
+  display: flex;
+  flex-direction: column;
+  width: 110px;
+  height: 0;
+  justify-content: space-evenly;
+  transition-property: height;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  margin-top: -20px;
+}
+.AdminPostPage .AdminPostAdd .AdminPostAddOptions div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 0;
+  transition-property: height;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transform: rotateZ(30deg);
+  user-select: none;
+  cursor: pointer;
+}
+.AdminPostPage .AdminPostAdd .AdminPostAddOptions div p {
+  background-color: cornflowerblue;
+  height: 0;
+  transition-property: height;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+}
+.AdminPostPage .AdminPostAdd .AdminPostAddOptions div p:nth-child(1) {
+  width: 80px;
+  color: white;
+  text-align: center;
+  font-size: 0;
+}
+.AdminPostPage .AdminPostAdd .AdminPostAddOptions div p:nth-child(2) {
+  width: 20px;
+  border-radius: 50%;
+  color: white;
+  font-size: 0;
+  text-align: center;
+}
+.AdminPostPage .AdminPostAdd .AdminPostAddButton {
+  outline: none;
+  border: none;
+  background-color: cornflowerblue;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 1px 9px 2px #8080804d;
+}
+.AdminPostPage .AdminPostAdd .AdminPostAddButton button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-property: transform;
+}
+.AdminPostPage .AdminPostAdd:hover {
+  width: 150px;
+  height: 210px;
+  left: 82%;
+}
+.AdminPostPage .AdminPostAdd:hover ~ .postsInputsContent {
+  margin-left: -110px;
+}
+.AdminPostPage .AdminPostAdd:hover > .AdminPostAddButton button {
+  transform: rotateZ(135deg);
+}
+.AdminPostPage .AdminPostAdd:hover > .AdminPostAddOptions {
+  height: 180px;
+}
+.AdminPostPage .AdminPostAdd:hover > .AdminPostAddOptions div p {
+  height: 20px;
+}
+.AdminPostPage .AdminPostAdd:hover > .AdminPostAddOptions div p:nth-child(1) {
+  font-size: 12px;
+}
+.AdminPostPage .AdminPostAdd:hover > .AdminPostAddOptions div p:nth-child(2) {
+  font-size: 14px;
+}
+
+.AdminPostPage .postsInputsContent {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-left: -50px;
+}
+
+.AdminPostPage .postsInputsContent::-webkit-scrollbar {
+  width: 7px;
+}
+
+.AdminPostPage .postsInputsContent::-webkit-scrollbar-track {
+  background-color: #e6e9ef;
+}
+
+.AdminPostPage .postsInputsContent::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+}
+
+.AdminPostPage .postsInputsContent .postsInputs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.AdminPostPage .postsInputsContent .postsInputs .autocomplete {
+  width: 49%;
+  margin-right: 5px;
+}
+.AdminPostPage .postsInputsContent .postsInputs .autocomplete ul {
+  list-style: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.AdminPostPage .postsInputsContent .postsInputs .autocomplete ul li {
+  list-style: none;
+  background-color: #8080806b;
+  text-align: center;
+}
+.AdminPostPage .postsInputsContent .postsInputs .autocomplete input {
+  width: 100% !important;
+}
+.AdminPostPage .postsInputsContent .postsInputs input {
+  width: 49%;
+  margin-right: 5px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+.AdminPostPage .postsInputsContent .postsInputs button {
+  border: none;
+  outline: none;
+  background-color: cornflowerblue;
+  align-self: center;
+  color: white;
+  border-radius: 5px;
+  width: 80px;
+  height: 35px;
+  font-weight: 900;
+  font-size: 15px;
+  cursor: pointer;
+}

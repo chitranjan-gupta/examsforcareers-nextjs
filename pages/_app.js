@@ -12,6 +12,7 @@ import "@/styles/Details.css";
 import "@/styles/Viewall.css";
 import "@/styles/Open.css";
 import "@/styles/Userhome.css";
+import "@/styles/Adminposts.css";
 
 if (typeof window !== "undefined") {
   window.addEventListener("load", () => {

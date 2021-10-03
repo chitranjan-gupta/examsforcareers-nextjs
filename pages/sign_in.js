@@ -10,6 +10,7 @@ function Signin() {
     document.title = "Sign In";
   }
   const history = useRouter();
+  const [isDisabled, setDisabled] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   if (typeof window !== "undefined") {
@@ -96,6 +97,7 @@ function Signin() {
         }
         return;
       }
+      setDisabled(true);
       const res = await fetch("/api/users/signin", {
         method: "POST",
         headers: {
@@ -108,11 +110,13 @@ function Signin() {
       });
       const data = await res.json();
       if (res.status === 200) {
+        setDisabled(false);
         if (typeof window !== "undefined") {
-          window.alert(data.error);
+          window.alert(data.message);
         }
         history.push("/user");
       } else {
+        setDisabled(false);
         console.log(data.message);
         if (typeof window !== "undefined") {
           window.alert(data.message);
@@ -120,6 +124,7 @@ function Signin() {
         return;
       }
     } catch (err) {
+      setDisabled(false);
       console.log(err);
     }
   };
@@ -175,6 +180,7 @@ function Signin() {
                 className="submitbutton"
                 value="Login In"
                 onClick={loginUser}
+                disabled={isDisabled}
               />
             </div>
           </form>

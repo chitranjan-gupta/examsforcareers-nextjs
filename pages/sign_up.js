@@ -11,6 +11,7 @@ function Signup() {
     document.title = "Sign Up";
   }
   const history = useRouter();
+  const [isDisabled, setDisabled] = useState(false);
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -18,11 +19,8 @@ function Signup() {
     password: "",
     cpassword: "",
   });
-  let name, value;
   const handleInputs = (e) => {
-    name = e.target.name;
-    value = e.target.value;
-    setUser({ ...user, [name]: value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
   const postData = async (e) => {
     e.preventDefault();
@@ -109,6 +107,7 @@ function Signup() {
         }
         return;
       }
+      setDisabled(true);
       const res = await fetch("/api/users/register", {
         method: "POST",
         headers: {
@@ -122,6 +121,7 @@ function Signup() {
       });
       const data = await res.json();
       if (res.status === 200) {
+        setDisabled(false);
         if (typeof window !== "undefined") {
           window.alert("Successful Registration");
         }
@@ -129,18 +129,21 @@ function Signup() {
         console.log(data.message);
         history.push("/sign_in");
       } else if (res.status === 422 || !data) {
+        setDisabled(false);
         if (typeof window !== "undefined") {
           window.alert("Email Already Exists!");
         }
         console.log("Email Already Exists!");
         console.log(data.message);
       } else {
+        setDisabled(false);
         if (typeof window !== "undefined") {
           window.alert(data.message);
         }
         console.log(data);
       }
     } catch (err) {
+      setDisabled(false);
       console.log(err);
     }
   };
@@ -235,6 +238,7 @@ function Signup() {
                 className="submitbutton"
                 value="Sign Up"
                 onClick={postData}
+                disabled={isDisabled}
               />
             </div>
             <div className="alreadyreg">
