@@ -29,8 +29,11 @@ export default async function handler(req, res) {
         } else {
           const token = await adminLogin.generateAuthToken();
           const cookies = new Cookies(req, res);
+          let hourstoexpire = 2;
           cookies.set("adtoken", token, {
-            expires: new Date(Date.now() + 1504155),
+            expires: new Date(
+              new Date().setHours(new Date().getHours() + hourstoexpire)
+            ),
             httpOnly: true,
           });
           return new Promise((resolve) => {

@@ -29,8 +29,11 @@ export default async function handler(req, res) {
         } else {
           const token = await userLogin.generateAuthToken();
           const cookies = new Cookies(req, res);
+          let hourstoexpire = 5;
           cookies.set("jwtoken", token, {
-            expires: new Date(Date.now() + 150415794),
+            expires: new Date(
+              new Date().setHours(new Date().getHours() + hourstoexpire)
+            ),
             httpOnly: true,
           });
           return new Promise((resolve) => {

@@ -122,8 +122,7 @@ export default function Exam() {
                   <li
                     key={i}
                     onClick={(e) => {
-                      document.querySelector("input#categoryb").value =
-                        e.target.innerText;
+                      params.categoryBase = e.target.innerText;
                     }}
                   >
                     {val.name}

@@ -33,7 +33,7 @@ const auth = (handler, meth) => {
           return resolve();
         });
       }
-      var Adminuser = {
+      let Adminuser = {
         name: admin.name,
       };
       req.admin = Adminuser;

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import PageNumber from "@/components/PageNumber";
@@ -23,6 +23,10 @@ function OthersExams() {
       pageNum = parseInt(router.query.no) - 1;
     }
   }
+  const r1 = new RegExp("engineering exams", "ig");
+  const r2 = new RegExp("medical exams", "ig");
+  const r3 = new RegExp("defence exams", "ig");
+  const r4 = new RegExp("board exams", "ig");
   const [exams, setExams] = useState([]);
   const getExams = async (pageNum) => {
     const res = await fetch("/api/exams/categoryall", {
@@ -51,10 +55,18 @@ function OthersExams() {
         {exams.length >= 1 ? (
           <>
             {exams.map((exam) => {
+              if (
+                r1.test(exam.name.trim()) ||
+                r2.test(exam.name.trim()) ||
+                r3.test(exam.name.trim()) ||
+                r4.test(exam.name.trim())
+              ) {
+                return <Fragment key={exam._id}></Fragment>;
+              }
               return (
                 <div className="card" key={exam._id}>
                   <h1>
-                    <Link href={""}>{exam.name}</Link>
+                    <Link href={`/others_exams/${exam.name}`}>{exam.name}</Link>
                   </h1>
                 </div>
               );

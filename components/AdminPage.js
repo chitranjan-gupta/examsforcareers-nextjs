@@ -332,7 +332,7 @@ function AdminPage(props) {
                   </div>
                   Password
                 </li>
-                <li onClick={(event) => changeProps(event)}>
+                <li id="SignOut" onClick={(event) => changeProps(event)}>
                   <div>
                     <svg
                       viewBox="0 0 320 384"
