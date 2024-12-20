@@ -6,36 +6,36 @@ function Footer() {
     <footer className="copyright">
       <div>
         <Link href="/disclaimer">
-          <a className="disclaimer">
+          <p className="disclaimer">
             Copyright © 2021 — examsforcareers.
             <b className="th">com</b>. All Rights Reserved.
-          </a>
+          </p>
         </Link>
         <div>
           <Link href="/disclaimer">
-            <a>
-              <li>Disclaimer</li>
-            </a>
+            <p>
+            Disclaimer
+            </p>
           </Link>
           <Link href="/privacy_policy">
-            <a>
-              <li>Privacy Policy</li>
-            </a>
+            <p>
+            Privacy Policy
+            </p>
           </Link>
           <Link href="/sign_in">
-            <a>
-              <li>Sign In</li>
-            </a>
+            <p>
+            Sign In
+            </p>
           </Link>
           <Link href="/sign_up">
-            <a>
-              <li>Sign Up</li>
-            </a>
+            <p>
+            Sign Up
+            </p>
           </Link>
           <Link href="/contact_us">
-            <a>
-              <li>Contact Us</li>
-            </a>
+            <p>
+            Contact Us
+            </p>
           </Link>
         </div>
       </div>

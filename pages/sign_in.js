@@ -186,7 +186,7 @@ function Signin() {
           </form>
           <div className="already">
             <Link href="/sign_up">
-              <a>Create An Account to get started</a>
+            Create An Account to get started
             </Link>
           </div>
         </div>

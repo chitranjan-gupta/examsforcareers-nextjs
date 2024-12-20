@@ -107,7 +107,7 @@ function Home() {
                         href={`/details/${update.name.replace(/ /g, "_")}`}
                         scroll={false}
                       >
-                        <a>{update.name}</a>
+                        {update.name}
                       </Link>
                     </li>
                   );
@@ -142,7 +142,7 @@ function Home() {
                         href={`/details/${admit.name.replace(/ /g, "_")}`}
                         scroll={false}
                       >
-                        <a>{admit.name}</a>
+                        {admit.name}
                       </Link>
                     </li>
                   );
@@ -176,7 +176,7 @@ function Home() {
                         href={`/details/${result.name.replace(/ /g, "_")}`}
                         scroll={false}
                       >
-                        <a>{result.name}</a>
+                        {result.name}
                       </Link>
                     </li>
                   );

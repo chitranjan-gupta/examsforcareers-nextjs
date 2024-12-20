@@ -2,7 +2,7 @@
 /.pnp
 .pnp.js
 config.env
-package-lock.json
+
 .vscode
 /.git
 # next.js
